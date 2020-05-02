@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    body {
+       background-image: url('coffee.jpg');
+       background-repeat: no-repeat;
+       background-size: cover;
+       background-attachment: fixed;
+    }
+    </style>
+
+<body>
+<img src="/polar-coffee-logo-white-400px_tag.png" alt="Polar Coffee" title="Polar Coffee" width="200px" padding: 30px;>
+<link rel="stylesheet" type="text/css" href="css/sign_up.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">  
+
+<script>
+  function portal() {
+    window.location.href ="http://localhost:5000/";
+  }
+
+</script>
+
+
+<body>
+  <form action="/new_user" method="POST">
+    <div class="container">
+      <h1 align='center'>Polar Coffee</h1 al>
+      <p>Sign up to Polar Coffee's newsletter!</p>
+      <hr>
+      <label for="UserName"><b>Username</b></label>
+      <br />
+      <input type="text" placeholder="Enter Username" name="Username" id = "Username" required>
+      <br />
+      <label for="Password"><b>Email</b></label>
+      <br />
+      <input type="text" placeholder="Enter Email" name="Password" id = "Password" required>
+      </hr>
+
+      <div class="w3-container">
+        <p align='center'> <button class="w3-button w3-round-xxlarge w3-black" type = "submit">Sign up</button></p>
+        <p align='center'> <button class="w3-button w3-round-xxlarge w3-gray" onclick= "portal()">No thanks</button></p>  
+      </div>
+    </div>
+  </form>
+</body>
+
+</body>
+</html>
