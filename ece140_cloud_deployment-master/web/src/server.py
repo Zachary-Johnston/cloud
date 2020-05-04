@@ -13,11 +13,11 @@ db_name = os.environ['MYSQL_DATABASE']
 db_host = os.environ['MYSQL_HOST']
 
 # Show all the users in the database
-def show_users(req):
+#def show_users(req):
   # "/users" comes from the route defined in rest_server.py
-  Users = requests.get(REST_SERVER + "/users").json()
+#  Users = requests.get(REST_SERVER + "/users").json()
   # The word "users" is a variable that is used in the show_users.html
-  return render_to_response('templates/show_users.html', {'users': Users}, request=req)
+#  return render_to_response('templates/show_users.html', {'users': Users}, request=req)
 
 
 def add_new_user(req):
