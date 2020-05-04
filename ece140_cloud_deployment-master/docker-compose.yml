@@ -5,6 +5,8 @@ services:
   rest:
     build:
       context: ./rest
+    environment:
+      - REST_SERVER=http://64.225.127.211:5000 #if this doesn't work, replace IP with rest
     ports:
       - 6001:6000
     env_file:
