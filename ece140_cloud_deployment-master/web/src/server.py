@@ -11,6 +11,7 @@ db_user = os.environ['MYSQL_USER']
 db_pass = os.environ['MYSQL_PASSWORD']
 db_name = os.environ['MYSQL_DATABASE']
 db_host = os.environ['MYSQL_HOST']
+REST_SERVER = os.environ['REST_SERVER']
 
 # Show all the users in the database
 def show_users(req):
