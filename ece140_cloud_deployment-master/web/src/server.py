@@ -4,6 +4,7 @@ from pyramid.renderers import render_to_response
 
 import mysql.connector as mysql
 import requests
+import json
 import os
 
 db_user = os.environ['MYSQL_USER']
