@@ -12,6 +12,16 @@ services:
     volumes:
       - ./rest/src:/app
     container_name: official_rest_server
+  
+   ui:
+    build:
+      context: ./ui
+    environment:
+      - REST_SERVER=http://rest:6000
+    ports:
+      - 6000:6000
+    volumes:
+      - ./ui/src:/app
 
   web-server:
     build:
