@@ -17,29 +17,27 @@ cursor = db.cursor()
 
 # # CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!!
 cursor.execute("drop table if exists Users;")
-last_name
-# Create a TStudents table (wrapping it in a try-except is good practice)
+
+# CREATED USERS TABLE
 try:
   cursor.execute("""
     CREATE TABLE Users (
-      id          integer  AUTO_INCREMENT PRIMARY KEY,
-      first_name  VARCHAR(30) NOT NULL,
-      last_name   VARCHAR(30) NOT NULL,
-      email       VARCHAR(50) NOT NULL,
-      password    VARCHAR(20) NOT NULL,
-      created_at  TIMESTAMP
+      id integer  AUTO_INCREMENT PRIMARY KEY,
+      Username  VARCHAR(50) NOT NULL,
+      Password   VARCHAR(50) NOT NULL,
+      Status       VARCHAR(50) NOT NULL
     );
   """)
 except:
-  print("Users table already exists. Not recreating it.")
+  print("Table already exists. Not recreating it.")
 
-# Insert Records
-query = "insert into Users (first_name, last_name, email, password, created_at) values (%s, %s, %s, %s, %s)"
+# Insert Records into Users
+query = "insert into Users (Username, Password, Status) values (%s, %s, %s)"
 values = [
-  ('rick','gessner','rick@gessner.com', 'abc123', '2020-02-20 12:00:00'),
-  ('ramsin','khoshabeh','ramsin@khoshabeh.com', 'abc123', '2020-02-20 12:00:00'),
-  ('al','pisano','al@pisano.com', 'abc123', '2020-02-20 12:00:00'),
-  ('truong','nguyen','truong@nguyen.com', 'abc123', '2020-02-20 12:00:00')
+  ('Jesi','jesi@ucsd.edu','Valid'),
+  ('Jesus','jesus@ucsd.edu','Pending'),
+  ('Zack','zack@ucsd.edu','Pending'),
+  ('John','john@ucsd.edu','Pending'),
 ]
 cursor.executemany(query, values)
 db.commit()
