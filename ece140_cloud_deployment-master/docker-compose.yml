@@ -2,17 +2,6 @@ version: '3'
 
 services:
 
-    rest: #this is added
-    build:
-      context: ./rest
-    ports:
-      - 6001:6000
-    env_file:
-      ./credentials.env
-    volumes:
-      - ./rest/src:/app
-    container_name: official_rest_server
-  
   web-server:
     build:
       context: ./web
