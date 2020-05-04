@@ -7,8 +7,6 @@ services:
       context: ./rest
     ports:
       - 6001:6000
-    environment:
-      - REST_SERVER=http://rest:6000
     env_file:
       ./credentials.env
     volumes:
