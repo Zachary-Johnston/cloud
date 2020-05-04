@@ -28,7 +28,7 @@ def add_new_user(req):
 
   data = {"Username": req.params['Username'], "Password":  req.params['Password']}
   #New_user = requests.post(REST_SERVER + '/new_users', data=data).json()
-  New_user = requests.post('http://64.225.127.211:6001/add_users_db', data=data).json()
+  New_user = requests.post('http://64.225.127.211:6001/new_users', data=data).json()
   return render_to_response('templates/portal.html', {}, request=req)
 
 # This function will become useless
