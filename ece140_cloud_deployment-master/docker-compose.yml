@@ -2,6 +2,28 @@ version: '3'
 
 services:
 
+  rest:
+    build:
+      context: ./rest
+    ports:
+      - 6001:6000
+    env_file:
+      ./credentials.env
+    volumes:
+      - ./rest/src:/app
+    container_name: official_rest_server
+    
+   ui:
+    build:
+      context: ./ui
+    environment:
+      - REST_SERVER=http://64.225.127.211:6000
+# OR       - REST_SERVER=http://rest:6000
+    ports:
+      - 6000:6000
+    volumes:
+      - ./ui/src:/app
+
   web-server:
     build:
       context: ./web
