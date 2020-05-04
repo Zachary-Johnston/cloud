@@ -6,5 +6,5 @@ RUN pip install -r /tmp/requirements.txt
 
 WORKDIR /app
 
-EXPOSE 5000
+EXPOSE 6000
 CMD python rest_server.py
