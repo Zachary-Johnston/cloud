@@ -1,0 +1,82 @@
+use info_database;  # database name
+CREATE TABLE Users (
+  id integer AUTO_INCREMENT PRIMARY KEY,
+  first_name  VARCHAR(30) NOT NULL,
+  last_name   VARCHAR(30) NOT NULL,
+  email       VARCHAR(30) NOT NULL,
+  age         int         NOT NULL,
+  pid         VARCHAR(50) NOT NULL,
+  is_prof     int         NOT NULL,
+  created_at  TIMESTAMP
+);
+
+select * from Users;
+
+CREATE TABLE Rooms (
+  id integer AUTO_INCREMENT PRIMARY KEY,
+  room_name    VARCHAR(30) NOT NULL,
+  room_number  VARCHAR(30) NOT NULL,
+  capacity     int         NOT NULL,
+  created_at   TIMESTAMP
+);
+
+select * from Rooms;
+
+CREATE TABLE Courses (
+  id integer AUTO_INCREMENT PRIMARY KEY,
+  course_name    VARCHAR(30) NOT NULL,
+  prof_id        int         NOT NULL,
+  room_id        int         NOT NULL,
+  created_at   TIMESTAMP
+);
+
+select * from Courses;
+
+CREATE TABLE Enrollments (
+  id integer AUTO_INCREMENT PRIMARY KEY,
+  course_id        int         NOT NULL,
+  student_id       int         NOT NULL,
+);
+
+select * from Enrollments;
+
+INSERT into Users (first_name, last_name, email, age, pid, is_prof, created_at) 
+VALUES
+    ('tom','jones','tom@jones.com', '23', 'A100', '0', '2020-02-11 10:11:12'),
+    ('bill','smith','bill@smith.com', '24', 'A200', '0', '2020-02-11 10:11:12'),
+    ('kim','possible','kim@possible.com', '22', 'A300', '0', '2020-02-11 10:11:12'),
+    ('jessica','rabbit','jessica@rabbit.com', '23', 'A400', '0', '2020-02-11 10:11:12'),
+    ('veronica','mars','veronica@mars.com', '30', 'A500', '0', '2020-02-11 10:11:12'),
+    ('marge','simpson','marge@simpson.com', '24', 'A600', '0', '2020-02-11 10:11:12'),
+    ('ramsin','khoshabeh','ramsin@khoshabeh.com', '30', 'A700', '1', '2020-02-11 10:11:12'),
+    ('rick','gessner','rick@gessner.com', '59', 'A800', '1', '2020-02-11 10:11:12')
+
+select * from Users;
+
+INSERT into Rooms (room_name, room_number, capacity, created_at) 
+VALUES
+    ('alcatraz','25', '50', '2020-02-11 10:11:12'),
+    ('rikers','35', '25', '2020-02-11 10:11:12'),
+    ('sing-sing','80', '75', '2020-02-11 10:11:12');
+    
+select * from Rooms;
+
+INSERT into Courses (course_name, prof_id, room_id, created_at) 
+VALUES
+    ('ECE140','7', '2', '2020-02-11 10:11:12'),
+    ('ECE141','8', '3', '2020-02-11 10:11:12');
+
+select * from Courses;
+
+INSERT into Enrollments (course_id, student_id)
+VALUES
+    ('1', '1'),
+    ('1', '2'),
+    ('1', '3'),
+    ('1', '4'),
+    ('2', '2'),
+    ('2', '3'),
+    ('2', '5'),
+    ('2', '6');
+
+select * from Enrollments;
