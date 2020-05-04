@@ -15,13 +15,14 @@ services:
   
    ui:
     build:
-      context: ./ui
+      context: ./web
     environment:
       - REST_SERVER=http://rest:6000
+      #or http://64.225.127.211:6000
     ports:
       - 6000:6000
     volumes:
-      - ./ui/src:/app
+      - ./web/src:/app
 
   web-server:
     build:
