@@ -3,6 +3,7 @@ from pyramid.config import Configurator
 from pyramid.renderers import render_to_response
 
 import mysql.connector as mysql
+import requests
 import os
 
 db_user = os.environ['MYSQL_USER']
