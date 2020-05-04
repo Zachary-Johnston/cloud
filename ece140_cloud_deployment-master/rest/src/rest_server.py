@@ -1,6 +1,7 @@
 from wsgiref.simple_server import make_server
 from pyramid.config import Configurator
 from pyramid.response import Response
+from pyramid.renderers import render_to_response
 
 import json
 import mysql.connector as mysql
@@ -501,5 +502,5 @@ if __name__ == '__main__':
   
 
   app = config.make_wsgi_app()
-  server = make_server('0.0.0.0', 5000, app)
+  server = make_server('0.0.0.0', 6000, app)
   server.serve_forever()
