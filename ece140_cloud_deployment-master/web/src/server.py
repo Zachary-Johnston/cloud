@@ -15,7 +15,8 @@ db_host = os.environ['MYSQL_HOST']
 # Show all the users in the database
 def show_users(req):
   # "/users" comes from the route defined in rest_server.py
-  Users = requests.get(REST_SERVER + "/users").json()
+  #Users = requests.get(REST_SERVER + "/users").json()
+  Users = requests.get('64.225.127.211:6001/users').json()
   # The word "users" is a variable that is used in the show_users.html
   return render_to_response('templates/show_users.html', {'users': Users}, request=req)
 
@@ -26,7 +27,8 @@ def add_new_user(req):
 
 
   data = {"Username": req.params['Username'], "Password":  req.params['Password']}
-  New_user = requests.post(REST_SERVER + '/new_users', data=data).json()
+  #New_user = requests.post(REST_SERVER + '/new_users', data=data).json()
+  New_user = requests.post('64.225.127.211:6001/new_users', data=data).json()
   return render_to_response('templates/portal.html', {}, request=req)
 
 # This function will become useless
@@ -50,7 +52,8 @@ def changestatus(req):
 # Compare credentials from request (from user) to json
 def correct_password(req):
   data = {"Username": req.params['Username'], "Password":  req.params['Password']}
-  validity = requests.post(REST_SERVER + '/check_password', data = data).json()
+  #validity = requests.post(REST_SERVER + '/check_password', data = data).json()
+  validity = requests.post('64.225.127.211:6001/check_password', data = data).json()
   return validity
 
 def valid_user(req):
@@ -58,7 +61,8 @@ def valid_user(req):
     data = {"Username": req.params['Username']}
   except:
     data = req
-  validity = requests.post(REST_SERVER + '/check_validity', data = data).json()
+  #validity = requests.post(REST_SERVER + '/check_validity', data = data).json()
+  validity = requests.post('64.225.127.211:6001/check_validity', data = data).json()
   return validity
 
 # Route to validate login credentials...
@@ -82,11 +86,13 @@ def login(req):
   return render_to_response('templates/did_log_in.html', {}, request =req)
 
 def admin(req):
-  Users = requests.get(REST_SERVER + "/users").json()
+  #Users = requests.get(REST_SERVER + "/users").json()
+  Users = requests.get("64.225.127.211:6001/users").json()
   return render_to_response('templates/adminportal.html',{'users': Users}, request =req)
 
 def tracker(req):
-  moves = requests.get(REST_SERVER + "/requested_moves").json()
+  #moves = requests.get(REST_SERVER + "/requested_moves").json()
+  moves = requests.get("64.225.127.211:6001/requested_moves").json()
   return render_to_response('templates/tracker.html', {'Username': req.params['Username'], 'moves': moves}, request =req)
  
 def controller(req):
