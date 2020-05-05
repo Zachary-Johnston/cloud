@@ -24,12 +24,34 @@ def show_users(req):
 def add_new_user(req):
   # Get all the data that is going to be sent (needs to be a dict like "data")
   # print(req.params) #debugging
-
-
   data = {"Username": req.params['Username'], "Password":  req.params['Password']}
   #New_user = requests.post(REST_SERVER + '/new_users', data=data).json()
   New_user = requests.post('https://64.225.127.211:6001/new_users', data=data).json()
   return render_to_response('templates/portal.html', {}, request=req)
+
+def add_users_db(req):
+  # View the Dictionary that was Posted
+  # Get the Password
+  newPsw = str(req.params.getall("Password"))
+  # Get rid of the [] that comes from req
+  newPsw = newPsw[2:len(newPsw)-2]
+  # Get the name the user entered
+  newName = str(req.params.getall("Username"))
+  # Get rid of the [] that comes from req
+  newName = newName[2:len(newName)-2]
+  # Connect to the database
+  db = mysql.connect(user=db_user, password=db_pass, host=db_host, database=db_name)
+  cursor = db.cursor()
+  # Insert Records
+  query = "insert into Users (Username, Password, Status) values (%s, %s, %s)"
+  values = [
+  (newName,newPsw,'Pending'),
+  ]
+  cursor.executemany(query, values)
+  db.commit()
+  cursor.execute("SELECT Username, Password, Status from Users;")
+  records = cursor.fetchall()
+  return json.dumps(records)
 
 # This function will become useless
 def changestatus(req):
@@ -141,6 +163,10 @@ if __name__ == '__main__':
 
   config.add_route('sign_up', '/sign_up')
   config.add_view(sign_up, route_name='sign_up')
+  
+   ##########ADDED
+  config.add_route('add_new_user', '/new_users')
+  config.add_view(add_users_db, route_name='add_new_user', renderer='json')
   
 
   config.add_route('login', '/login')
