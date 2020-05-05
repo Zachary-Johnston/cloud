@@ -104,6 +104,9 @@ def about(req):
 
 def portal(req):
   return render_to_response('templates/portal.html', {}, request =req)
+
+def features(req):
+  return render_to_response('templates/features.html', {}, request =req)
  
 def login(req):
   return render_to_response('templates/did_log_in.html', {}, request =req)
@@ -184,6 +187,9 @@ if __name__ == '__main__':
 
   config.add_route('about', '/about') # Added route for about
   config.add_view(about, route_name='about')
+  
+  config.add_route('features', '/features') # Added route for about
+  config.add_view(features, route_name='features')
 
   config.add_route('post_menu', '/post_menu')
   config.add_view(post_menu, route_name='post_menu', request_method = "POST")
