@@ -51,7 +51,8 @@ def add_users_db(req):
   db.commit()
   cursor.execute("SELECT Username, Password, Status from Users;")
   records = cursor.fetchall()
-  return json.dumps(records)
+  json.dumps(records) #take this out?
+  return render_to_response('templates/portal.html', {}, request =req)
 
 # This function will become useless
 def changestatus(req):
