@@ -102,6 +102,9 @@ def sign_up(req):
 def about(req):
   return render_to_response('templates/about.html', {}, request =req)
 
+def pricing(req):
+  return render_to_response('templates/pricing.html', {}, request =req)
+
 def portal(req):
   return render_to_response('templates/portal.html', {}, request =req)
 
@@ -188,8 +191,11 @@ if __name__ == '__main__':
   config.add_route('about', '/about') # Added route for about
   config.add_view(about, route_name='about')
   
-  config.add_route('features', '/features') # Added route for about
+  config.add_route('features', '/features') # Added route for features
   config.add_view(features, route_name='features')
+  
+  config.add_route('pricing', '/pricing') # Added route for pricing
+  config.add_view(pricing, route_name='pricing')
 
   config.add_route('post_menu', '/post_menu')
   config.add_view(post_menu, route_name='post_menu', request_method = "POST")
