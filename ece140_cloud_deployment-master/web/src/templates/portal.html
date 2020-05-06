@@ -77,7 +77,12 @@ body {
 <hr>
   <center><table style="width:90%; text-align: center; background-color: none; color: #ffffff; padding:15px;">
     <tr>
-      <th><img src="/polar-coffee-logo-square-300px.png" alt="Polar Coffee" title="Polar Coffee" width="200px";></th>
+      <th><img id="Bottom" src="/polar-coffee-logo-square-300px.png" onClick="myFunction()" alt="Polar Coffee" title="Polar Coffee" width="200px";>
+      <script>
+         document.getElementById("Bottom").onclick = function() {
+            window.location.href = "http://64.225.127.211";
+         };
+      </script></th>
     </tr>
     <tr>
       <td><em>How you want it, when you want it.</em></td>
