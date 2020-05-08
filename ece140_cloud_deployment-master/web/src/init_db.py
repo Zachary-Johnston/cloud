@@ -42,8 +42,37 @@ values = [
 cursor.executemany(query, values)
 db.commit()
 
+
+try:
+ cursor.execute("""
+   CREATE TABLE cofset (
+     id integer  AUTO_INCREMENT PRIMARY KEY,
+     coffeeid VARCHAR(50) NOT NULL,
+     temperature VARCHAR(50) NOT NULL,
+     time    VARCHAR(50) NOT NULL
+   );
+ """)
+except:
+ print("Table already exists. Not recreating it.")
+ 
+# Insert Records into cofset
+query = "insert into cofset (coffeeid, temperature, time) values (%s, %s, %s)"
+values = [
+ ('someid', 'sometemp', 'sometime'),
+]
+cursor.executemany(query, values)
+db.commit()
+
+
+
+
 # Selecting Records
 cursor.execute("select * from Users;")
 print('---------- DATABASE INITIALIZED ----------')
 [print(x) for x in cursor]
+
+cursor.execute("select * from cofset;")
+print('---------- DATABASE INITIALIZED ----------')
+[print(x) for x in cursor]
+
 db.close()
