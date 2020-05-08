@@ -13,7 +13,7 @@ body {
 	z-index: 1;
 	top: 0;
 	left: 0;
-	background-color: #fff;
+	background-color: #111;
 	opacity: .9;
 	overflow-x: hidden;
 	padding-top: 60px;
@@ -38,7 +38,7 @@ body {
 	font-size: 30px
 }
 .slide a {
-	color: #000;
+	color: #fff;
 	font-size: 36px;
 }
 #content {
