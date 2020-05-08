@@ -8,6 +8,22 @@ body {
    background-attachment: fixed;
 }
 </style>
+   
+   
+        <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/landing.css">
+<script>
+  function openSlideMenu(){
+    document.getElementById('menu').style.width = '250px';
+    document.getElementById('content').style.marginLeft = '250px';
+  }
+  function closeSlideMenu(){
+    document.getElementById('menu').style.width = '0';
+    document.getElementById('content').style.marginLeft = '0';
+  }
+</script>
+   
+   
 <link rel="stylesheet" type="text/css" href="css/features.css">
 <head>
 <style>
@@ -26,6 +42,31 @@ border-radius: 5px;
 </head>
 <body>
 <img id="Polar" src="/polar-coffee-logo-white-400px_tag.png" onClick="myFunction()" alt="Polar Coffee" title="Polar Coffee" width="200px" padding: 30px;>
+   
+   
+      <body>
+     <div id="content">
+
+    <span class="slide">
+      <a href="#" onclick="openSlideMenu()">
+        <i class="fas fa-bars"></i>
+      </a>
+    </span>
+
+    <div id="menu" class="nav">
+      <a href="#" class="close" onclick="closeSlideMenu()">
+        <i class="fas fa-times"></i>
+      </a>
+      <a href="http://64.225.127.211">Home</a>
+      <a href="http://64.225.127.211/about">About</a>
+      <a href="http://64.225.127.211/features">Features</a>
+      <a href="http://64.225.127.211/pricing">Pricing</a>
+      <a href="http://64.225.127.211/sign_up">Sign Up</a>
+    </div>
+  </div>
+   </body>   
+   
+   
 <script>
 document.getElementById("Polar").onclick = function() {
     window.location.href = "http://64.225.127.211";
