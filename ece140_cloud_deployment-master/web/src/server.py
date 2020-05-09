@@ -21,6 +21,69 @@ def show_users(req):
   return render_to_response('templates/show_users.html', {'users': Users}, request=req)
 
 
+
+
+
+
+
+
+
+
+
+
+def setcoffeex(req):
+  print(req)
+  print("rannnnn")
+  data = {"temperature": req.params["temperature"]}
+  print("rannnnn2")
+  print(data)
+  coffeetemp = requests.post('https://64.225.127.211:6001/coffeeset', data=data).json()
+  print("whatalifemann")
+  return render_to_response('templates/timer.html', {}, request=req)
+def coffeeset(req):
+ # View the Dictionary that was Posted
+ # Get the fname
+ print("bbbeeeeeppppp")
+ temp = str(req.params.getall("temperature"))
+ # Get rid of the [] that comes from req
+ print(temp)
+ start = time.time()
+ print(start)
+ temp = temp[2:len(temp)-2]
+ print(temp)
+ db = mysql.connect(user=db_user, password=db_pass, host=db_host, database=db_name)
+ cursor = db.cursor()
+ # Insert Records
+ query = "insert into cofset (coffeeid, temperature, time) values (%s, %s, %s)"
+ values = [
+ ("testid", temp, start),
+ ]
+ print("GOT THIS FAR1")
+ cursor.executemany(query, values)
+ db.commit()
+ print("GOT THIS FAR2")
+ cursor.execute("SELECT coffeeid, temperature, time from cofset;")
+ records = cursor.fetchall()
+ print(records)
+ return json.dumps(records)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def add_new_user(req):
   # Get all the data that is going to be sent (needs to be a dict like "data")
   # print(req.params) #debugging
