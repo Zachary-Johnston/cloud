@@ -7,6 +7,7 @@ import json
 import mysql.connector as mysql
 import os
 import requests
+import time
 
                 ##############################################################################
                 #                 Including completed code from assignment API
