@@ -65,8 +65,10 @@ def coffeeset(req):
  # Get the fname
  print("bbbeeeeeppppp")
  temp = str(req.params.getall("temperature"))
+    data = {"temperature": req.params["temperature"]}
  # Get rid of the [] that comes from req
  print(temp)
+ print(data)
  start = time.time()
  print(start)
  temp = temp[2:len(temp)-2]
