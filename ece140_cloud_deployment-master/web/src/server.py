@@ -289,11 +289,19 @@ if __name__ == '__main__':
   
   
   
+  
+  
   config.add_route('setter', '/setter') # Added route for setter
   config.add_view(setter, route_name='setter')
   
   config.add_route('timer', '/timer') # Added route for timer
   config.add_view(timer, route_name='timer')
+  
+  config.add_route('coffeeset', '/coffeeset') # Added route for timer
+  config.add_view(coffeeset, route_name='coffeeset')
+  
+  config.add_route('setcoffeex', '/setcoffeex') # Added route for timer
+  config.add_view(setcoffeex, route_name='setcoffeex')
   
   
   
