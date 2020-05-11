@@ -179,6 +179,27 @@ def features(req):
 def login(req):
   return render_to_response('templates/did_log_in.html', {}, request =req)
 
+
+
+
+
+
+
+
+
+def setter(req):
+  return render_to_response('templates/setter.html', {}, request =req)
+
+def timer(req):
+  return render_to_response('templates/timer.html', {}, request =req)
+
+
+
+
+
+
+
+
 def admin(req):
   #Users = requests.get(REST_SERVER + "/users").json()
   Users = requests.get("https://64.225.127.211:6001/users").json()
@@ -264,6 +285,18 @@ if __name__ == '__main__':
 
   config.add_route('post_menu', '/post_menu')
   config.add_view(post_menu, route_name='post_menu', request_method = "POST")
+  
+  
+  
+  
+  config.add_route('setter', '/setter') # Added route for setter
+  config.add_view(setter, route_name='setter')
+  
+  config.add_route('timer', '/timer') # Added route for timer
+  config.add_view(timer, route_name='timer')
+  
+  
+  
 
 
 
