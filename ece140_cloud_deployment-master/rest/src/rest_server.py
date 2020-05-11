@@ -42,6 +42,61 @@ def get_student_method(req):
   return json.dumps(record)
 
 
+
+
+
+
+
+
+
+
+def setcoffeex(req):
+  print(req)
+  print("rannnnn")
+  data = {"temperature": req.params["temperature"]}
+  print("rannnnn2")
+  print(data)
+  coffeetemp = requests.post('https://64.225.127.211:6001/coffeeset', data=data).json()
+  print("whatalifemann")
+  return render_to_response('templates/timer.html', {}, request=req)
+def coffeeset(req):
+ # View the Dictionary that was Posted
+ # Get the fname
+ print("bbbeeeeeppppp")
+ temp = str(req.params.getall("temperature"))
+ # Get rid of the [] that comes from req
+ print(temp)
+ start = time.time()
+ print(start)
+ temp = temp[2:len(temp)-2]
+ print(temp)
+ db = mysql.connect(user=db_user, password=db_pass, host=db_host, database=db_name)
+ cursor = db.cursor()
+ # Insert Records
+ query = "insert into cofset (coffeeid, temperature, time) values (%s, %s, %s)"
+ values = [
+ ("testid", temp, start),
+ ]
+ print("GOT THIS FAR1")
+ cursor.executemany(query, values)
+ db.commit()
+ print("GOT THIS FAR2")
+ cursor.execute("SELECT coffeeid, temperature, time from cofset;")
+ records = cursor.fetchall()
+ print(records)
+ return json.dumps(records)
+def setcoffee(req):
+  return render_to_response('templates/setter.html', {'username': req.params['username']}, request =req)
+
+
+
+
+
+
+
+
+
+
 def total_users(req):
   db = mysql.connect(host=db_host, database=db_name, user=db_user, passwd=db_pass)
   cursor = db.cursor()
@@ -469,6 +524,27 @@ if __name__ == '__main__':
 
   config.add_route('req_move', '/requested_moves')
   config.add_view(requested_moves, route_name='req_move', renderer = 'json')
+  
+  
+  
+  
+  
+  config.add_route('setter', '/setter') # Added route for setter
+  config.add_view(setter, route_name='setter')
+  
+  config.add_route('timer', '/timer') # Added route for timer
+  config.add_view(timer, route_name='timer')
+  
+  config.add_route('coffeeset', '/coffeeset') # Added route for timer
+  config.add_view(coffeeset, route_name='coffeeset')
+  
+  config.add_route('setcoffeex', '/setcoffeex') # Added route for timer
+  config.add_view(setcoffeex, route_name='setcoffeex')
+  
+  
+  
+  
+  
 
   config.add_route('send_moves', '/send_moves', request_method="POST")
   config.add_view(send_moves, route_name='send_moves', renderer = 'json')
