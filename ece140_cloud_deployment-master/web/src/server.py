@@ -6,6 +6,7 @@ import mysql.connector as mysql
 import requests
 import json
 import os
+import time
 
 db_user = os.environ['MYSQL_USER']
 db_pass = os.environ['MYSQL_PASSWORD']
