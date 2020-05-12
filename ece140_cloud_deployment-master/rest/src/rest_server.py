@@ -92,7 +92,7 @@ def setcoffee(req):
   return render_to_response('templates/setter.html', {'username': req.params['username']}, request =req)
 
 def timer(req):
-  return render_to_response('templates/timer.html', {}, request =req)
+  return render_to_response('templates/portal.html', {}, request =req)
   
   
   
