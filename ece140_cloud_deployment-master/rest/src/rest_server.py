@@ -57,9 +57,10 @@ def setcoffeex(req):
   data = {"temperature": req.params["temperature"]}
   print("rannnnn2")
   print(data)
-  coffeetemp = requests.post('https://64.225.127.211:6001/coffeeset', data=data).json()
+  coffeetemp = requests.post('https://64.225.127.211/coffeeset', data=data).json()
   print("whatalifemann")
-  return render_to_response('templates/timer.html', {}, request=req)
+  return timer(req)
+
 def coffeeset(req):
  # View the Dictionary that was Posted
  # Get the fname
