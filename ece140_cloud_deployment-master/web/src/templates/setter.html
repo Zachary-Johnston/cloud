@@ -58,24 +58,26 @@ document.getElementById("Polar").onclick = function() {
     window.location.href ="http://64.225.127.211";
   }
 </script>
-
-
+  
+  
 <body>
-  <form action="http://64.225.127.211:6001/coffeeset" method="POST" onsubmit="return showtimer();">
+  <form action="http://64.225.127.211:6001/setcoffeex" method="POST" onsubmit="return showtimer();">
     <div class="container">
       <h1 align='center'>Polar Coffee</h1 al>
       <p>Request your desired temperature.</p>
       <hr>
       <label for="temperature"><b>Hot</b></label>
       <br />
-      <input type="button" name="temperature" id = "temperature" required>
+      <a input type="button" class="rounded_button" name="temperature" id = "hot" value="Hot" style="text-transform: no-underline;">Hot.</a>
       <br />
       <label for="temperature"><b>Cold</b></label>
       <br />
-      <input type="button" name="temperature" id = "temperature" required>
+      <a input type="button" class="rounded_button" name="temperature" id = "cold" value="Cold" style="text-transform: no-underline;">Cold.</a>
       </hr>
   </form>
 </body>
+  
+  
   </table></center>
   <hr>
   <center><table style="width:90%; text-align: center; background-color: none; color: #ffffff; padding:15px;">
