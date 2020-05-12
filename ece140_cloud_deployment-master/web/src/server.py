@@ -41,6 +41,7 @@ def setcoffeex(req):
   coffeetemp = requests.post('https://64.225.127.211:6001/coffeeset', data=data).json()
   print("whatalifemann")
   return render_to_response('templates/timer.html', {}, request=req)
+
 def coffeeset(req):
  # View the Dictionary that was Posted
  # Get the fname
@@ -62,9 +63,11 @@ def coffeeset(req):
  print("GOT THIS FAR1")
  cursor.executemany(query, values)
  db.commit()
-
+ print("GOT THIS FAR2")
+ cursor.execute("SELECT coffeeid, temperature, time from cofset;")
+ records = cursor.fetchall()
  print(records)
- return render_to_response('templates/timer.html', {}, request =req)
+ return render_to_response('templates/timer.html', {}, request=req)
 
 def setcoffee(req):
   return render_to_response('templates/setter.html', {'username': req.params['username']}, request =req)
