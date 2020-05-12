@@ -64,7 +64,7 @@ def coffeeset(req):
  # View the Dictionary that was Posted
  # Get the fname
  print("bbbeeeeeppppp")
- temp = str(req.params.getall("radio"))
+ temp = str(req.params.getall("temperature"))
  # Get rid of the [] that comes from req
  print(temp)
  start = time.time()
