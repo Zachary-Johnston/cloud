@@ -67,7 +67,7 @@ def coffeeset(req):
  cursor.execute("SELECT coffeeid, temperature, time from cofset;")
  records = cursor.fetchall()
  print(records)
-   return timer(req)
+ return timer(req)
 
 def setcoffee(req):
   return render_to_response('templates/setter.html', {'username': req.params['username']}, request =req)
