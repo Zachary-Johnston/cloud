@@ -47,19 +47,9 @@
     </div>
   </div>
    </body>  
-<script>
-document.getElementById("Polar").onclick = function() {
-    window.location.href = "http://64.225.127.211";
-};
-  </script>
+  
+  <form action="/setcoffeex" method="POST" onsubmit="return showtimer();">
 
-<script>
-  function portal() {
-    window.location.href ="http://64.225.127.211";
-  }
-</script>
-  
-  
 <body>
   <form action="http://64.225.127.211:6001/setcoffeex" method="POST" onsubmit="return showtimer();">
     <div class="container">
@@ -70,11 +60,12 @@ document.getElementById("Polar").onclick = function() {
       <label for="hot">Hot</label><br>
       <input type="radio" name="temperature" id="cold" value="Cold">
       <label for="cold">Cold</label><br>
-      <a input type="submit" value="Submit" class="rounded_button" style="text-transform: no-underline;">Sumbit.</a>
+      <a input type="submit" value="Submit" class="rounded_button" style="text-transform: no-underline;">Submit.</a>
+      <input type="submit" value="Submit">
       </hr>
+    </div>
   </form>
 </body>
-  
   
   </table></center>
   <hr>
