@@ -89,13 +89,14 @@ def coffeeset(req):
 def setcoffee(req):
   return render_to_response('templates/setter.html', {'username': req.params['username']}, request =req)
 
-
-
-
-
-
-
-
+def timer(req):
+  return render_to_response('templates/timer.html', {}, request =req)
+  
+  
+  
+  
+  
+  
 
 
 
@@ -539,6 +540,10 @@ if __name__ == '__main__':
   
   config.add_route('setcoffeex', '/setcoffeex') # Added route for timer
   config.add_view(setcoffeex, route_name='setcoffeex')
+  
+  config.add_route('timer', '/timer') # Added route for timer
+  config.add_view(timer, route_name='timer')
+  
   
   
   
