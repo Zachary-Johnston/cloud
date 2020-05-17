@@ -58,6 +58,7 @@ sign_button {
   top: 100px;  /* <use to move down from top*/ 
 }
 
+.pointer {cursor: pointer;}
 
 button:hover {
   opacity:1;
