@@ -82,6 +82,8 @@ body{
     justify-content: space-evenly;
 }
 
+.pointer {cursor: pointer;}
+
 .optiontitle{
     font-size: 20px;;
 }
