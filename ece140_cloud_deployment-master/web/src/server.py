@@ -182,6 +182,9 @@ def features(req):
 def login(req):
   return render_to_response('templates/did_log_in.html', {}, request =req)
 
+def metrics(req):
+  return render_to_response('templates/metrics.html', {}, request =req)
+
 
 
 
@@ -288,6 +291,9 @@ if __name__ == '__main__':
 
   config.add_route('post_menu', '/post_menu')
   config.add_view(post_menu, route_name='post_menu', request_method = "POST")
+  
+  config.add_route('metrics', '/metrics') # Added route for metrics rendering
+  config.add_view(metrics, route_name='metrics')
   
   
   
