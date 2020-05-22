@@ -82,9 +82,9 @@ def get_members(req):
   db = mysql.connect(host=db_host, database=db_name, user=db_user, passwd=db_pass)
   cursor = db.cursor()
   cursor.execute("select count(id) from Users;")
-  record = cursor.fetchall()
+  records = cursor.fetchall()
   db.close()
-  return render_to_response('templates/metrics.html', {'users': record}, request=req)
+  return render_to_response('templates/metrics.html', {'users': records}, request=req)
 
 ############################################
 
