@@ -84,7 +84,7 @@ def get_members(req):
   cursor.execute("select count(id) from Users;")
   record = cursor.fetchall()
   db.close()
-  return render_to_response('templates/metrics.html', {'users': records}, request=req)
+  return render_to_response('templates/metrics.html', {'users': record}, request=req)
 
 ############################################
 
