@@ -23,7 +23,6 @@ body {
   }
 </script>
    
-   
 <link rel="stylesheet" type="text/css" href="css/features.css">
 <head>
 <style>
@@ -84,7 +83,25 @@ document.getElementById("Polar").onclick = function() {
 <p>&nbsp;</p> 
 <p>&nbsp;</p>
 <center><a class="rounded_button" style="text-transform: no-underline;" href="/sign_up">Sign up.</a></center></div>
+   
+   
+   
+   
+   
+   
+   
    <center><p>{{users}}</p></center>
+           <script var text = {{users}};></script>
+   <center><p id="demo"></p></center>
+<script>
+document.getElementById("demo").innerHTML =
+JSON.parse(text);
+</script>
+   
+   
+   
+   
+   
 <p>&nbsp;</p> 
 <p>&nbsp;</p>
 <p>&nbsp;</p> 
