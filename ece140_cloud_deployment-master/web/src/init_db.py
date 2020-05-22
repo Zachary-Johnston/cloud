@@ -59,8 +59,8 @@ except:
 # Insert Records into news
 query = "insert into news (title, release_time, description) values (%s, %s, %s)"
 values = [
- ('Prototype Completed', 'May 15, 2020', 'All hardware is functional. Your coffee comes out ice cold! Working on software integration.'),
- ('Taste Quality Improvements','May 20, 2020','Ridding the machine of any influence on taste from the cooling unit. Taste will be 100% safe and neutral!'),
+ ('Prototype Completed', 'May 15, 2020', 'All hardware is functional.'),
+ ('Taste Quality Improvements','May 20, 2020','Taste is 100% safe and neutral!'),
 ]
 cursor.executemany(query, values)
 db.commit()
