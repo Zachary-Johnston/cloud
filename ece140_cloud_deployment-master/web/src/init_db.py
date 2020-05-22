@@ -56,7 +56,7 @@ except:
   print("Table already exists. Not recreating it.")
 
 # Insert Records into News
-query = "insert into Users (Title, Date, Update) values (%s, %s, %s)"
+query = "insert into News (Title, Date, Update) values (%s, %s, %s)"
 values = [
   ('Prototype Completed','May 15, 2020','All hardware is functional. Your coffee comes out ice cold! Working on software integration.'),
   ('Taste Quality Improvements','May 20, 2020','Ridding the machine of any influence on taste from the cooling unit. Taste will be 100% safe and neutral!'),
