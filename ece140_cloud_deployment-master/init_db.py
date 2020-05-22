@@ -43,24 +43,23 @@ cursor.executemany(query, values)
 db.commit()
 
 
-# CREATED NEWS TABLE
+#NEWS TABLE
 try:
-  cursor.execute("""
-    CREATE TABLE News (
-      id integer  AUTO_INCREMENT PRIMARY KEY,
-      Title  NVARCHAR(max) NOT NULL,
-      Date   NVARCHAR(max) NOT NULL,
-      Update       NVARCHAR(max) NOT NULL
-    );
-  """)
+ cursor.execute("""
+   CREATE TABLE news (
+     id integer  AUTO_INCREMENT PRIMARY KEY,
+     title VARCHAR(50) NOT NULL,
+     release_time VARCHAR(50) NOT NULL,
+     description    VARCHAR(50) NOT NULL
+   );
+ """)
 except:
-  print("Table already exists. Not recreating it.")
-
-# Insert Records into News
-query = "insert into News (Title, Date, Update) values (%s, %s, %s)"
+ print("Table already exists. Not recreating it.")
+ 
+# Insert Records into cofset
+query = "insert into news (title, release_time, description) values (%s, %s, %s)"
 values = [
-  ('x','y','z'),
-  ('a','b','c'),
+ ('sometitle', 'sometime', 'somedescription'),
 ]
 cursor.executemany(query, values)
 db.commit()
