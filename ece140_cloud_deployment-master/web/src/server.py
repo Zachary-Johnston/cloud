@@ -85,7 +85,9 @@ def get_members(req):
   records = cursor.fetchall()
   db.close()
   records=json.dumps(records[0])
-  records=json.dumps(records[0])
+  print(records)
+  records = records[1:len(records)-1]
+  print(records)
   return render_to_response('templates/metrics.html', {'users': records}, request=req)
 
 ############################################
