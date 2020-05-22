@@ -48,9 +48,9 @@ try:
  cursor.execute("""
    CREATE TABLE news (
      id integer  AUTO_INCREMENT PRIMARY KEY,
-     title VARCHAR(50) NOT NULL,
-     release_time VARCHAR(50) NOT NULL,
-     description    VARCHAR(50) NOT NULL
+     title VARCHAR(max) NOT NULL,
+     release_time VARCHAR(max) NOT NULL,
+     description    VARCHAR(max) NOT NULL
    );
  """)
 except:
