@@ -56,7 +56,7 @@ try:
 except:
  print("Table already exists. Not recreating it.")
  
-# Insert Records into cofset
+# Insert Records into news
 query = "insert into news (title, release_time, description) values (%s, %s, %s)"
 values = [
  ('Prototype Completed', 'May 15, 2020', 'All hardware is functional. Your coffee comes out ice cold! Working on software integration.'),
