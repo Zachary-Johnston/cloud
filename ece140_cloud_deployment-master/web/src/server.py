@@ -90,7 +90,7 @@ def get_members(req):
   value_to_return = Response(body=json.dumps(value_to_return))
   #records = records[1:len(records)-1]
   print(records)
-  return records
+  return value_to_return
 
 ############################################
 
