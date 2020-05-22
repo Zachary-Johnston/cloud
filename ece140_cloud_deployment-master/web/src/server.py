@@ -75,9 +75,17 @@ def setcoffee(req):
 
 
 
+############################################
 
+def become_member(req):
+  db = mysql.connect(host=db_host, database=db_name, user=db_user, passwd=db_pass)
+  cursor = db.cursor()
+  cursor.execute("select count(id) from Users;")
+  record = cursor.fetchall()
+  db.close()
+  return json.dumps(record)
 
-
+############################################
 
 
 
@@ -313,6 +321,14 @@ if __name__ == '__main__':
   config.add_view(setcoffeex, route_name='setcoffeex')
   
   
+  
+  
+  ##################################
+  
+  config.add_route('become_member', '/become_member')
+  config.add_view(become_member, route_name='become_member', renderer='json')
+  
+  ##################################
   
 
 
