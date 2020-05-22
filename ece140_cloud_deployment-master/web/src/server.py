@@ -1,10 +1,10 @@
 from wsgiref.simple_server import make_server
 from pyramid.config import Configurator
 from pyramid.renderers import render_to_response
+From pyramid.response import response
 
 import mysql.connector as mysql
 import requests
-import responses
 import json
 import os
 import time
