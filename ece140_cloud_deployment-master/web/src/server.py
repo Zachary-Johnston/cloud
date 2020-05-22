@@ -84,9 +84,10 @@ def get_members(req):
   cursor.execute("select count(id) from Users;")
   records = cursor.fetchall()
   db.close()
-  records=json.dumps(records[0])
-  print(records)
-  records = records[1:len(records)-1]
+  value_to_return = {}
+  value_to_return['records'] = records[0]
+  value_to_return = Response(body=json.dumps(value_to_return))
+  #records = records[1:len(records)-1]
   print(records)
   return records
 
