@@ -59,7 +59,8 @@ except:
 # Insert Records into cofset
 query = "insert into news (title, release_time, description) values (%s, %s, %s)"
 values = [
- ('sometitle', 'sometime', 'somedescription'),
+ ('Prototype Completed', 'May 15, 2020', 'All hardware is functional. Your coffee comes out ice cold! Working on software integration.'),
+ ('Taste Quality Improvements','May 20, 2020','Ridding the machine of any influence on taste from the cooling unit. Taste will be 100% safe and neutral!'),
 ]
 cursor.executemany(query, values)
 db.commit()
@@ -96,6 +97,10 @@ print('---------- DATABASE INITIALIZED ----------')
 [print(x) for x in cursor]
 
 cursor.execute("select * from cofset;")
+print('---------- DATABASE INITIALIZED ----------')
+[print(x) for x in cursor]
+
+cursor.execute("select * from news;")
 print('---------- DATABASE INITIALIZED ----------')
 [print(x) for x in cursor]
 
