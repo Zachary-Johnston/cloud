@@ -326,8 +326,8 @@ if __name__ == '__main__':
   
   ##################################
   
-  config.add_route('become_member', '/become_member')
-  config.add_view(become_member, route_name='become_member', renderer='json')
+  config.add_route('get_members', '/get_members')
+  config.add_view(get_members, route_name='get_members', renderer='json')
   
   ##################################
   
