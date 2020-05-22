@@ -77,13 +77,14 @@ def setcoffee(req):
 
 ############################################
 
-def become_member(req):
+def get_members(req):
+  # Connect to the database and retrieve the users
   db = mysql.connect(host=db_host, database=db_name, user=db_user, passwd=db_pass)
   cursor = db.cursor()
   cursor.execute("select count(id) from Users;")
   record = cursor.fetchall()
   db.close()
-  return json.dumps(record)
+  return render_to_response('templates/metrics.html', {'users': records}, request=req)
 
 ############################################
 
