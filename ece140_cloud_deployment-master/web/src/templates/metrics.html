@@ -68,21 +68,7 @@ border-radius: 5px;
    </body>   
    
    
-   <script>
-   function fetchdata(){
- $.ajax({
-  url: 'polarcoffee.org/get_members',
-  type: 'get',
-  success: function(response){
-   // Perform operation on the return value
-   alert(response);
-  }
- });
-}
-$(document).ready(function(){
- setInterval(fetchdata,5000);
-});
-      </script>
+
    
 <script>
 document.getElementById("Polar").onclick = function() {
@@ -95,20 +81,42 @@ document.getElementById("Polar").onclick = function() {
 </center><center> 
    
    
-   
-   
-   <div data-update="polarcoffee.org/get_members" data-refresh-interval="500">
-   <p><span style="font-family: Helvetica; font-size: 2.0em; text-shadow: 1px 1px #000000; color: #ffffff; line-height: 1.3; text-transform: lowercase; font-weight: 300;">
-   Keep up with polar coffee. Join the exclusive club of {{users}} members, to date.</span></p> 
-   </div>
-   
    <script>
-   $('[data-update]').each(function() {
-  var self = $(this);
-  var target = self.data('update');   
-  var refreshId =  setInterval(function() { self.load(target); }, self.data('data-refresh-interval'));
-});
+      function metrics(){
+    window.location.href = "polarcoffee.org/metrics";
+}
+(function(){
+    let post_URL = "http://polarcoffee.org/get_members"
+    let request = {};
+
+    fetch (post URL,
+    {
+        method: "POST",
+        body: JSON.stringify(request)
+    })
+
+    .then(response=>response.json())
+    .then((response) =>{
+        console.log("Response Received")
+        console.log(response)
+        console.log(response["records"])
+
+        document.getElementById("userNumber").innerHTML = response["records"];
+    })
+
+    .catch((error)=>{
+        console.log("Error");
+        console.error(error);
+    })
+setTimeout(arguments.callee, 60000);
+})();
    </script>
+   
+   <h1 id="userNumber">{{userNumber}}</h1>
+   
+   <p><span style="font-family: Helvetica; font-size: 2.0em; text-shadow: 1px 1px #000000; color: #ffffff; line-height: 1.3; text-transform: lowercase; font-weight: 300;">
+   Keep up with polar coffee. Join the exclusive club of {{userNumber}} members, to date.</span></p> 
+
    
    
    
