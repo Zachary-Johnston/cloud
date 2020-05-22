@@ -42,6 +42,28 @@ values = [
 cursor.executemany(query, values)
 db.commit()
 
+# CREATED NEWS TABLE
+try:
+  cursor.execute("""
+    CREATE TABLE News (
+      id integer  AUTO_INCREMENT PRIMARY KEY,
+      Title  VARCHAR(50) NOT NULL,
+      Date   VARCHAR(50) NOT NULL,
+      Update       VARCHAR(50) NOT NULL
+    );
+  """)
+except:
+  print("Table already exists. Not recreating it.")
+
+# Insert Records into News
+query = "insert into Users (Title, Date, Update) values (%s, %s, %s)"
+values = [
+  ('Prototype Completed','May 15, 2020','All hardware is functional. Your coffee comes out ice cold! Working on software integration.'),
+  ('Taste Quality Improvements','May 20, 2020','Ridding the machine of any influence on taste from the cooling unit. Taste will be 100% safe and neutral!'),
+]
+cursor.executemany(query, values)
+db.commit()
+
 
 try:
  cursor.execute("""
