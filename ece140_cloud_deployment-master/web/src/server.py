@@ -118,6 +118,23 @@ def portal(req):
 ############################################
 
 
+def get_ready(req):
+  # Connect to the database and retrieve the news
+  db = mysql.connect(host=db_host, database=db_name, user=db_user, passwd=db_pass)
+  cursor = db.cursor()
+  cursor.execute("select days from ready where id=1;")
+  record = cursor.fetchall()
+  db.close()
+  value_to_return = {}
+  value_to_return['recorded'] = recorded
+  value_to_return = Response(body=json.dumps(value_to_return))
+  #record = record[1:len(record)-1]
+  print(recorded)
+  return value_to_return
+
+
+
+
 
 
 
@@ -355,6 +372,13 @@ if __name__ == '__main__':
   
   config.add_route('get_news', '/get_news')
   config.add_view(get_news, route_name='get_news', renderer='json')
+  
+  ##################################
+  
+  ##################################
+  
+  config.add_route('get_ready', '/get_ready')
+  config.add_view(get_ready, route_name='get_ready', renderer='json')
   
   ##################################
 
