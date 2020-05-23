@@ -100,11 +100,9 @@ body {
     .then((response) =>{    
         console.log("Response Received")
         console.log(response)
-        console.log(record)
-        console.log(record["title"])
-        console.log(record[0])
         console.log(response["record"])
-        console.log(response["record[0]"])
+        console.log(response["record"]["title"])
+        console.log(response["record"][0])
         var firstUpdate = response[0];
         var secondUpdate = response[1];
         console.log(firstUpdate);
