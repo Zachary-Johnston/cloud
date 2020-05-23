@@ -43,7 +43,63 @@ body {
    
    
    
-   
+           <script>
+         var newsTitle = new String("");
+         var newsDate = new String("");
+         var newsDescription = new String("");
+         var newsTitleAgain = new String("");
+         var newsDateAgain = new String("");
+         var newsDescriptionAgain = new String("");
+         function portal(){
+            window.location.href = "";
+         }
+(function(){
+    let post_URL = "http://polarcoffee.org/get_news"
+    let request = {};
+
+    fetch (post_URL,
+    {
+        method: "POST",
+        body: JSON.stringify(request)
+    })
+    .then(response=>response.json())
+    .then((response) =>{    
+        console.log("Response Received")
+        console.log(response)
+        console.log(response["record"])
+        console.log(response["record"][0])
+        var firstUpdate = response["record"][0];
+        var secondUpdate = response["record"][1];
+        console.log(firstUpdate);
+        console.log(secondUpdate);
+        newsTitle = firstUpdate[1];
+        document.getElementById("theTitle").innerHTML = newsTitle;
+        console.log(newsTitle)
+        newsDate = firstUpdate[2];
+        document.getElementById("theDate").innerHTML = newsDate;
+        console.log(newsDate)
+        newsDescription = firstUpdate[3];
+        document.getElementById("theDescription").innerHTML = newsDescription;
+        console.log(newsDescription)
+       
+        newsTitleAgain = secondUpdate[1];
+        document.getElementById("theTitleAgain").innerHTML = newsTitleAgain;
+        console.log(newsTitleAgain)
+        newsDateAgain = secondUpdate[2];
+        document.getElementById("theDateAgain").innerHTML = newsDateAgain;
+        console.log(newsDateAgain)
+        newsDescriptionAgain = secondUpdate[3];
+        document.getElementById("theDescriptionAgain").innerHTML = newsDescriptionAgain;
+        console.log(newsDescriptionAgain)
+    })
+
+    .catch((error)=>{
+        console.log("Error");
+        console.error(error);
+    })
+setTimeout(arguments.callee, 60000);
+})();
+   </script>
    
    
    
@@ -106,69 +162,6 @@ body {
     </div>
   </div>
    </body>
-   
-   
-   
-   
-   
-   
-        <script>
-         var newsTitle = new String("");
-         var newsDate = new String("");
-         var newsDescription = new String("");
-         var newsTitleAgain = new String("");
-         var newsDateAgain = new String("");
-         var newsDescriptionAgain = new String("");
-         function portal(){
-            window.location.href = "";
-         }
-(function(){
-    let post_URL = "http://polarcoffee.org/get_news"
-    let request = {};
-
-    fetch (post_URL,
-    {
-        method: "POST",
-        body: JSON.stringify(request)
-    })
-    .then(response=>response.json())
-    .then((response) =>{    
-        console.log("Response Received")
-        console.log(response)
-        console.log(response["record"])
-        console.log(response["record"][0])
-        var firstUpdate = response["record"][0];
-        var secondUpdate = response["record"][1];
-        console.log(firstUpdate);
-        console.log(secondUpdate);
-        newsTitle = firstUpdate[1];
-        document.getElementById("theTitle").innerHTML = newsTitle;
-        console.log(newsTitle)
-        newsDate = firstUpdate[2];
-        document.getElementById("theDate").innerHTML = newsDate;
-        console.log(newsDate)
-        newsDescription = firstUpdate[3];
-        document.getElementById("theDescription").innerHTML = newsDescription;
-        console.log(newsDescription)
-       
-        newsTitleAgain = secondUpdate[1];
-        document.getElementById("theTitle").innerHTML = newsTitleAgain;
-        console.log(newsTitleAgain)
-        newsDateAgain = secondUpdate[2];
-        document.getElementById("theDate").innerHTML = newsDateAgain;
-        console.log(newsDateAgain)
-        newsDescriptionAgain = secondUpdate[3];
-        document.getElementById("theDescription").innerHTML = newsDescriptionAgain;
-        console.log(newsDescriptionAgain)
-    })
-
-    .catch((error)=>{
-        console.log("Error");
-        console.error(error);
-    })
-setTimeout(arguments.callee, 60000);
-})();
-   </script>
    
    
 <div class="custom" >
