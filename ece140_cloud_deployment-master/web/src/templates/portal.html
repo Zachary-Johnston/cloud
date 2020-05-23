@@ -100,7 +100,7 @@ body {
         console.log(response)
         console.log(response["record"])
 
-        document.getElementById("newsTable").innerHTML = response["record"];
+        document.getElementById("newsTable").innerHTML = response["record[0]"];
     })
 
     .catch((error)=>{
