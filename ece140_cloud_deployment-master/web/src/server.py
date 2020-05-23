@@ -94,7 +94,23 @@ def get_members(req):
 
 ############################################
 
+############################################
 
+def get_news(req):
+  # Connect to the database and retrieve the users
+  db = mysql.connect(host=db_host, database=db_name, user=db_user, passwd=db_pass)
+  cursor = db.cursor()
+  cursor.execute("select * from news;")
+  record = cursor.fetchall()
+  db.close()
+  value_to_return = {}
+  value_to_return['record'] = record
+  value_to_return = Response(body=json.dumps(value_to_return))
+  #record = record[1:len(record)-1]
+  print(record)
+  return value_to_return
+
+############################################
 
 
 
@@ -337,6 +353,12 @@ if __name__ == '__main__':
   
   ##################################
   
+  ##################################
+  
+  config.add_route('get_news', '/get_news')
+  config.add_view(get_news, route_name='get_news', renderer='json')
+  
+  ##################################
 
 
 
