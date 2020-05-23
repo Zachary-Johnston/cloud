@@ -100,7 +100,7 @@ def get_news(req):
   # Connect to the database and retrieve the news
   db = mysql.connect(host=db_host, database=db_name, user=db_user, passwd=db_pass)
   cursor = db.cursor()
-  cursor.execute("select * from news;")
+  cursor.execute("select * from newsupdates;")
   record = cursor.fetchall()
   db.close()
   value_to_return = {}
@@ -112,9 +112,22 @@ def get_news(req):
 
 ############################################
 
+def portal(req):
+    # Connect to the database and retrieve the news
+  db = mysql.connect(host=db_host, database=db_name, user=db_user, passwd=db_pass)
+  cursor = db.cursor()
+  cursor.execute("select description from newsupdates where id=1;")
+  firstdescription = cursor.fetchall()
+  cursor.execute("select description from newsupdates where id=2;")
+  latestdescription = cursor.fetchall()
+  db.close()
+  firstdescription = firstdescription[1:len(firstdescription)-1]
+  lastdescription = lastdescription[1:len(lastdescription)-1]
+  print(firstdescription)  
+  print(lastdescription)
+  return render_to_response('templates/portal.html', {'firstdescription': firstdescription}, {'lastdescription': lastdescription}, request =req)
 
-
-
+############################################
 
 
 
@@ -203,9 +216,6 @@ def about(req):
 
 def pricing(req):
   return render_to_response('templates/pricing.html', {}, request =req)
-
-def portal(req):
-  return render_to_response('templates/portal.html', {}, request =req)
 
 def features(req):
   return render_to_response('templates/features.html', {}, request =req)
