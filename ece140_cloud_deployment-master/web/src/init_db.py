@@ -91,21 +91,47 @@ cursor.executemany(query, values)
 db.commit()
 
 
+
+
 #readiness metric
 try:
  cursor.execute("""
    CREATE TABLE readiness (
      id integer  AUTO_INCREMENT PRIMARY KEY,
      days VARCHAR(50) NOT NULL
+     quantity VARCHAR(50) NOT NULL
    );
  """)
 except:
  print("Table already exists. Not recreating it.")
  
 # Insert days into readiness
-query = "insert into readiness (days) values (%s)"
+query = "insert into readiness (days, quantity) values (%s, %s)"
 values = [
- ('24'),
+ ('24', 'soon'),
+ ('23', 'soon'),
+ ('22', 'soon'),
+ ('21', 'soon'),
+ ('20', 'soon'),
+ ('19', 'soon'),
+ ('18', 'soon'),
+ ('17', 'soon'),
+ ('16', 'soon'),
+ ('15', 'soon'),
+ ('14', 'soon'),
+ ('13', 'soon'),
+ ('12', 'soon'),
+ ('11', 'soon'),
+ ('10', 'soon'),
+ ('9', 'very soon'),
+ ('8', 'very soon'),
+ ('7', 'very soon'),
+ ('6', 'very soon'),
+ ('5', 'very soon'),
+ ('4', 'very soon'),
+ ('3', 'very soon'),
+ ('2', 'very soon'),
+ ('1', 'very soon'),
 ]
 cursor.executemany(query, values)
 db.commit()
