@@ -96,7 +96,7 @@ try:
  cursor.execute("""
    CREATE TABLE readiness (
      id integer  AUTO_INCREMENT PRIMARY KEY,
-     days VARCHAR(50) NOT NULL
+     days VARCHAR(50) NOT NULL,
      quantity VARCHAR(50) NOT NULL
    );
  """)
