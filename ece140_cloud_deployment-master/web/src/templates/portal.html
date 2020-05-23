@@ -101,13 +101,13 @@ body {
         console.log("Response Received")
         console.log(response)
         console.log(response["record"])
-        newsTitle = response[value]["title"];
+        newsTitle = response[record]["title"];
         document.getElementById("theTitle").innerHTML = newsTitle;
         console.log(newsTitle)
-        newsDate = response[value]["release_time"];
+        newsDate = response[record]["release_time"];
         document.getElementById("theDate").innerHTML = newsDate;
         console.log(newsDate)
-        newsDescription = response[value]["description"];
+        newsDescription = response[record]["description"];
         document.getElementById("theDescription").innerHTML = newsDescription;
         console.log(newsDescription)
     })
