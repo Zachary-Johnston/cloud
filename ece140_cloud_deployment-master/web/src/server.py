@@ -113,19 +113,7 @@ def get_news(req):
 ############################################
 
 def portal(req):
-    # Connect to the database and retrieve the news
-  db = mysql.connect(host=db_host, database=db_name, user=db_user, passwd=db_pass)
-  cursor = db.cursor()
-  cursor.execute("select description from newsupdates where id=1;")
-  firstdescription = cursor.fetchall()
-  cursor.execute("select description from newsupdates where id=2;")
-  lastdescription = cursor.fetchall()
-  db.close()
-  firstdescription = firstdescription[1:len(firstdescription)-1]
-  lastdescription = lastdescription[1:len(lastdescription)-1]
-  print(firstdescription)  
-  print(lastdescription)
-  return render_to_response('templates/portal.html', {'firstdescription': firstdescription}, {'lastdescription': lastdescription}, request =req)
+  return render_to_response('templates/portal.html', {}, request =req)
 
 ############################################
 
