@@ -99,8 +99,20 @@ body {
         console.log("Response Received")
         console.log(response)
         console.log(response["record"])
-
-        document.getElementById("newsTable").innerHTML = response["record[0]"];
+        var aString = new String(""");
+        for (value in response){
+           console.log(value);
+           var anotherString = new String("");
+           anotherString = response[value]["title"];
+           anotherString = += "   ";
+           anotherString += response[value]["release_time"];
+           anotherString += "\n";
+           anotherString += response[value]["description"];
+           anotherString += "\n";
+           aString = anotherString + aString;
+        }
+        console.log(aString);
+        document.getElementById("newsTable").innerHTML = aString;
     })
 
     .catch((error)=>{
