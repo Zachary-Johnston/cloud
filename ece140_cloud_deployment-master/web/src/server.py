@@ -123,7 +123,7 @@ def get_ready(req):
   db = mysql.connect(host=db_host, database=db_name, user=db_user, passwd=db_pass)
   cursor = db.cursor()
   cursor.execute("select days from ready where id=1;")
-  record = cursor.fetchall()
+  recorded = cursor.fetchall()
   db.close()
   value_to_return = {}
   value_to_return['recorded'] = recorded
