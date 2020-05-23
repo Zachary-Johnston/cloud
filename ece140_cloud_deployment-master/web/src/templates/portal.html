@@ -99,17 +99,16 @@ body {
     .then(response=>response.json())
     .then((response) =>{    
         console.log("Response Received")
-        console.log(record[1])
-        console.log(response[1])
         console.log(response)
         console.log(response["record"])
-        newsTitle = response[record[1]];
+        console.log(response["record"])   
+        newsTitle = response["record"];
         document.getElementById("theTitle").innerHTML = newsTitle;
         console.log(newsTitle)
-        newsDate = response[record[2]];
+        newsDate = response["record"];
         document.getElementById("theDate").innerHTML = newsDate;
         console.log(newsDate)
-        newsDescription = response[record[3]];
+        newsDescription = response["record"];
         document.getElementById("theDescription").innerHTML = newsDescription;
         console.log(newsDescription)
     })
