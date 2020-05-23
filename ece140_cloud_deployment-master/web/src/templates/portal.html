@@ -97,14 +97,17 @@ body {
         body: JSON.stringify(request)
     })
     .then(response=>response.json())
-    .then((response) =>{
+    .then((response) =>{    
         console.log("Response Received")
         console.log(response)
         console.log(response["record"])
+        newsTitle = response[value]["title"];
         document.getElementById("theTitle").innerHTML = newsTitle;
         console.log(newsTitle)
+        newsDate = response[value]["release_time"];
         document.getElementById("theDate").innerHTML = newsDate;
         console.log(newsDate)
+        newsDescription = response[value]["description"];
         document.getElementById("theDescription").innerHTML = newsDescription;
         console.log(newsDescription)
     })
