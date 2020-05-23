@@ -99,14 +99,14 @@ try:
    CREATE TABLE readiness (
      id integer  AUTO_INCREMENT PRIMARY KEY,
      days VARCHAR(50) NOT NULL,
-     quantity VARCHAR(50) NOT NULL
+     howsoon VARCHAR(50) NOT NULL
    );
  """)
 except:
  print("Table already exists. Not recreating it.")
  
 # Insert days into readiness
-query = "insert into readiness (days, quantity) values (%s, %s)"
+query = "insert into readiness (days, howsoon) values (%s, %s)"
 values = [
  ('24', 'soon'),
  ('23', 'soon'),
