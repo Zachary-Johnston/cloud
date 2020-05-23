@@ -119,7 +119,7 @@ def portal(req):
   cursor.execute("select description from newsupdates where id=1;")
   firstdescription = cursor.fetchall()
   cursor.execute("select description from newsupdates where id=2;")
-  latestdescription = cursor.fetchall()
+  lastdescription = cursor.fetchall()
   db.close()
   firstdescription = firstdescription[1:len(firstdescription)-1]
   lastdescription = lastdescription[1:len(lastdescription)-1]
