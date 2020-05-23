@@ -16,9 +16,9 @@ db = mysql.connect(user=db_user, password=db_pass, host=db_host, database=db_nam
 cursor = db.cursor()
 
 # # CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!!
-cursor.execute("drop table if exists Users;")
+#cursor.execute("drop table if exists Users;")
 # # CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!!
-cursor.execute("drop table if exists news;")
+#cursor.execute("drop table if exists newsupdates;")
 
 # CREATED USERS TABLE
 try:
@@ -86,6 +86,26 @@ except:
 query = "insert into cofset (coffeeid, temperature, time) values (%s, %s, %s)"
 values = [
  ('someid', 'sometemp', 'sometime'),
+]
+cursor.executemany(query, values)
+db.commit()
+
+
+#readiness metric
+try:
+ cursor.execute("""
+   CREATE TABLE readiness (
+     id integer  AUTO_INCREMENT PRIMARY KEY,
+     days VARCHAR(50) NOT NULL
+   );
+ """)
+except:
+ print("Table already exists. Not recreating it.")
+ 
+# Insert Records into cofset
+query = "insert into readiness (days) values (%s)"
+values = [
+ ('24'),
 ]
 cursor.executemany(query, values)
 db.commit()
