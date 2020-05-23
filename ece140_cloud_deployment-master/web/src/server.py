@@ -97,7 +97,7 @@ def get_members(req):
 ############################################
 
 def get_news(req):
-  # Connect to the database and retrieve the users
+  # Connect to the database and retrieve the news
   db = mysql.connect(host=db_host, database=db_name, user=db_user, passwd=db_pass)
   cursor = db.cursor()
   cursor.execute("select * from news;")
