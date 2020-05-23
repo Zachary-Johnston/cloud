@@ -91,6 +91,25 @@ cursor.executemany(query, values)
 db.commit()
 
 
+#readiness metric
+try:
+ cursor.execute("""
+   CREATE TABLE readiness (
+     id integer  AUTO_INCREMENT PRIMARY KEY,
+     days VARCHAR(50) NOT NULL
+   );
+ """)
+except:
+ print("Table already exists. Not recreating it.")
+ 
+# Insert days into readiness
+query = "insert into readiness (days) values (%s)"
+values = [
+ ('24'),
+]
+cursor.executemany(query, values)
+db.commit()
+
 
 
 # Selecting Records
@@ -103,6 +122,10 @@ print('---------- DATABASE INITIALIZED ----------')
 [print(x) for x in cursor]
 
 cursor.execute("select * from newsupdates;")
+print('---------- DATABASE INITIALIZED ----------')
+[print(x) for x in cursor]
+
+cursor.execute("select * from readiness;")
 print('---------- DATABASE INITIALIZED ----------')
 [print(x) for x in cursor]
 
