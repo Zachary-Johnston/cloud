@@ -81,6 +81,9 @@ body {
    
    
         <script>
+         var newsTitle = new String("");
+         var newsDate = new String("");
+         var newsDescription = new String("");
          function portal(){
             window.location.href = "";
          }
@@ -93,26 +96,14 @@ body {
         method: "POST",
         body: JSON.stringify(request)
     })
-
     .then(response=>response.json())
     .then((response) =>{
         console.log("Response Received")
         console.log(response)
         console.log(response["record"])
-        var aString = new String(""");
-        for (value in response){
-           console.log(value);
-           var anotherString = new String("");
-           anotherString = response[value]["title"];
-           anotherString = += "   ";
-           anotherString += response[value]["release_time"];
-           anotherString += "\n";
-           anotherString += response[value]["description"];
-           anotherString += "\n";
-           aString = anotherString + aString;
-        }
-        console.log(aString);
-        document.getElementById("newsTable").innerHTML = aString;
+        document.getElementById("theTitle").innerHTML = newsTitle;
+        document.getElementById("theDate").innerHTML = newsDate;
+        document.getElementById("theDescription").innerHTML = newsDescription;
     })
 
     .catch((error)=>{
@@ -122,6 +113,12 @@ body {
 setTimeout(arguments.callee, 60000);
 })();
    </script>
+   
+   
+   
+   
+   
+   
    
    
    
@@ -146,13 +143,13 @@ setTimeout(arguments.callee, 60000);
     <th style="text-align:center;">UPDATE</th> 
   </tr>
   <tr>
-    <td id="newsTable" style="border:1px solid #888888; background:#FFFFFF;"><strong>Alpha Candidate Released: May 15, 2020</strong><br />Polar Coffee releases Alpha version of PRODUCT NAME.</td>
+    <td id="theTitle" style="border:1px solid #888888; background:#FFFFFF;"><strong>Alpha Candidate Released: May 15, 2020</strong><br />Polar Coffee releases Alpha version of PRODUCT NAME.</td>
   </tr>
   <tr>
-    <td style="border:1px solid #888888; background:#eeeeee;"><strong>First Patent Issued: May 5, 2020</strong><br />Polar Coffee patents ArcticCooling® technology.</td>
+    <td id="theDate" style="border:1px solid #888888; background:#eeeeee;"><strong>First Patent Issued: May 5, 2020</strong><br />Polar Coffee patents ArcticCooling® technology.</td>
   </tr>
   <tr>
-    <td style="border:1px solid #888888; background:#FFFFFF;"><strong>First Beer Consumed by Founder: April 1, 2020</strong><br />Polar Coffee Founder/Inventor Zachary Johnston turned 21 and enjoyed his first (legal) beer—a Guiness Extra Stout, of course.</td>
+    <td id="theDescription" style="border:1px solid #888888; background:#FFFFFF;"><strong>First Beer Consumed by Founder: April 1, 2020</strong><br />Polar Coffee Founder/Inventor Zachary Johnston turned 21 and enjoyed his first (legal) beer—a Guiness Extra Stout, of course.</td>
   </tr>
 </table></p>
    
