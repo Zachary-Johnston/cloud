@@ -52,13 +52,20 @@ body {
     <th style="text-align:center;">UPDATE</th> 
   </tr>
   <tr>
-    <td id="theTitle" style="border:1px solid #888888; background:#FFFFFF;"><strong>Alpha Candidate Released: May 15, 2020</strong><br />Polar Coffee releases Alpha version of PRODUCT NAME.</td>
+    <td id="theDate" style="border:1px solid #888888; background:#FFFFFF;"><strong>Alpha Candidate Released: May 15, 2020</strong><br />Polar Coffee releases Alpha version of PRODUCT NAME.</td>
   </tr>
   <tr>
-    <td id="theDate" style="border:1px solid #888888; background:#eeeeee;"><strong>First Patent Issued: May 5, 2020</strong><br />Polar Coffee patents ArcticCooling® technology.</td>
+    <td id="theTitle" style="border:1px solid #888888; background:#eeeeee;"><strong>First Patent Issued: May 5, 2020</strong><br />Polar Coffee patents ArcticCooling® technology.</td>
   </tr>
   <tr>
     <td id="theDescription" style="border:1px solid #888888; background:#FFFFFF;"><strong>First Beer Consumed by Founder: April 1, 2020</strong><br />Polar Coffee Founder/Inventor Zachary Johnston turned 21 and enjoyed his first (legal) beer—a Guiness Extra Stout, of course.</td>
+    <td id="theDateAgain" style="border:1px solid #888888; background:#FFFFFF;"><strong>Alpha Candidate Released: May 15, 2020</strong><br />Polar Coffee releases Alpha version of PRODUCT NAME.</td>
+  </tr>
+  <tr>
+    <td id="theTitleAgain" style="border:1px solid #888888; background:#eeeeee;"><strong>First Patent Issued: May 5, 2020</strong><br />Polar Coffee patents ArcticCooling® technology.</td>
+  </tr>
+  <tr>
+    <td id="theDescriptionAgain" style="border:1px solid #888888; background:#FFFFFF;"><strong>First Beer Consumed by Founder: April 1, 2020</strong><br />Polar Coffee Founder/Inventor Zachary Johnston turned 21 and enjoyed his first (legal) beer—a Guiness Extra Stout, of course.</td>
   </tr>
 </table></p>
    
@@ -107,6 +114,9 @@ body {
          var newsTitle = new String("");
          var newsDate = new String("");
          var newsDescription = new String("");
+         var newsTitleAgain = new String("");
+         var newsDateAgain = new String("");
+         var newsDescriptionAgain = new String("");
          function portal(){
             window.location.href = "";
          }
@@ -138,6 +148,16 @@ body {
         newsDescription = firstUpdate[3];
         document.getElementById("theDescription").innerHTML = newsDescription;
         console.log(newsDescription)
+       
+        newsTitleAgain = secondUpdate[1];
+        document.getElementById("theTitle").innerHTML = newsTitleAgain;
+        console.log(newsTitleAgain)
+        newsDateAgain = secondUpdate[2];
+        document.getElementById("theDate").innerHTML = newsDateAgain;
+        console.log(newsDateAgain)
+        newsDescriptionAgain = secondUpdate[3];
+        document.getElementById("theDescription").innerHTML = newsDescriptionAgain;
+        console.log(newsDescriptionAgain)
     })
 
     .catch((error)=>{
