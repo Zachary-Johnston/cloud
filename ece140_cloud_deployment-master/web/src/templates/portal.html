@@ -80,11 +80,49 @@ body {
    
    
    
+        <script>
+         function portal(){
+            window.location.href = "";
+         }
+(function(){
+    let post_URL = "http://polarcoffee.org/get_news"
+    let request = {};
+
+    fetch (post_URL,
+    {
+        method: "POST",
+        body: JSON.stringify(request)
+    })
+
+    .then(response=>response.json())
+    .then((response) =>{
+        console.log("Response Received")
+        console.log(response)
+        console.log(response["record"])
+
+        document.getElementById("newsTable").innerHTML = response["record"];
+    })
+
+    .catch((error)=>{
+        console.log("Error");
+        console.error(error);
+    })
+setTimeout(arguments.callee, 60000);
+})();
+   </script>
+   
+   
+   
+   
+   
+   
+   
 <div class="custom" >
 <center> 
 <p><span style="font-family: Helvetica; font-size: 4.5em; text-shadow: 1px 1px #000000 !important; color: #ffffff; line-height: 150%; text-transform: uppercase; font-weight: 300;">There's an easier way...</span></p> 
 </center><center> 
 <p><span style="font-family: Helvetica; font-size: 2.0em; text-shadow: 1px 1px #000000; color: #ffffff; line-height: 1.3; text-transform: lowercase; font-weight: 300;">No other coffee machine produces quality iced coffee instantaneously.</span></p> 
+<p id="newsTable" style="font-family: Helvetica; font-size: 2.0em; text-shadow: 1px 1px #000000; color: #ffffff; line-height: 1.3; text-transform: lowercase; font-weight: 300;">{{newsTable}}</p> 
 </center> 
 <p>&nbsp;</p> 
 <p>&nbsp;</p>
