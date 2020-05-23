@@ -16,9 +16,9 @@ db = mysql.connect(user=db_user, password=db_pass, host=db_host, database=db_nam
 cursor = db.cursor()
 
 # # CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!!
-#cursor.execute("drop table if exists Users;")
+cursor.execute("drop table if exists Users;")
 # # CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!!
-#cursor.execute("drop table if exists newsupdates;")
+cursor.execute("drop table if exists newsupdates;")
 
 # CREATED USERS TABLE
 try:
@@ -102,7 +102,7 @@ try:
 except:
  print("Table already exists. Not recreating it.")
  
-# Insert Records into cofset
+# Insert days into readiness
 query = "insert into readiness (days) values (%s)"
 values = [
  ('24'),
@@ -123,6 +123,10 @@ print('---------- DATABASE INITIALIZED ----------')
 [print(x) for x in cursor]
 
 cursor.execute("select * from newsupdates;")
+print('---------- DATABASE INITIALIZED ----------')
+[print(x) for x in cursor]
+
+cursor.execute("select * from readiness;")
 print('---------- DATABASE INITIALIZED ----------')
 [print(x) for x in cursor]
 
