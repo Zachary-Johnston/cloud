@@ -18,7 +18,9 @@ cursor = db.cursor()
 # # CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!!
 cursor.execute("drop table if exists Users;")
 # # CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!!
-cursor.execute("drop table if exists news;")
+cursor.execute("drop table if exists newsupdates;")
+# # CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!!
+cursor.execute("drop table if exists ready;")
 
 # CREATED USERS TABLE
 try:
@@ -94,7 +96,7 @@ db.commit()
 #readiness metric
 try:
  cursor.execute("""
-   CREATE TABLE readiness (
+   CREATE TABLE ready (
      id integer  AUTO_INCREMENT PRIMARY KEY,
      days VARCHAR(50) NOT NULL,
      howsoon VARCHAR(50) NOT NULL
@@ -104,7 +106,7 @@ except:
  print("Table already exists. Not recreating it.")
  
 # Insert days into readiness
-query = "insert into readiness (days, howsoon) values (%s, %s)"
+query = "insert into ready (days, howsoon) values (%s, %s)"
 values = [
  ('24', 'soon'),
  ('23', 'soon'),
@@ -149,7 +151,7 @@ cursor.execute("select * from newsupdates;")
 print('---------- DATABASE INITIALIZED ----------')
 [print(x) for x in cursor]
 
-cursor.execute("select * from readiness;")
+cursor.execute("select * from ready;")
 print('---------- DATABASE INITIALIZED ----------')
 [print(x) for x in cursor]
 
