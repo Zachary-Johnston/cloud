@@ -101,19 +101,18 @@ body {
         console.log("Response Received")
         console.log(response)
         console.log(response["record"])
-        console.log(response["record"]["title"])
         console.log(response["record"][0])
-        var firstUpdate = response[0];
-        var secondUpdate = response[1];
+        var firstUpdate = response["record"][0];
+        var secondUpdate = response["record"][1];
         console.log(firstUpdate);
         console.log(secondUpdate);
-        newsTitle = firstUpdate["title"];
+        newsTitle = firstUpdate[1];
         document.getElementById("theTitle").innerHTML = newsTitle;
         console.log(newsTitle)
-        newsDate = firstUpdate["release_time"];
+        newsDate = firstUpdate[2];
         document.getElementById("theDate").innerHTML = newsDate;
         console.log(newsDate)
-        newsDescription = firstUpdate["description"];
+        newsDescription = firstUpdate[3];
         document.getElementById("theDescription").innerHTML = newsDescription;
         console.log(newsDescription)
     })
