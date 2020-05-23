@@ -17,6 +17,8 @@ cursor = db.cursor()
 
 # # CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!!
 cursor.execute("drop table if exists Users;")
+# # CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!!
+cursor.execute("drop table if exists news;")
 
 # CREATED USERS TABLE
 try:
