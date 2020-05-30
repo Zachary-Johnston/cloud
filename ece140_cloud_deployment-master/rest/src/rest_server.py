@@ -8,6 +8,8 @@ import mysql.connector as mysql
 import os
 import requests
 import time
+import paho.mqtt.client as mqtt
+
 
                 ##############################################################################
                 #                 Including completed code from assignment API
