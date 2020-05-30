@@ -8,6 +8,8 @@ import requests
 import json
 import os
 import time
+import paho.mqtt.client as mqtt
+
 
 db_user = os.environ['MYSQL_USER']
 db_pass = os.environ['MYSQL_PASSWORD']
