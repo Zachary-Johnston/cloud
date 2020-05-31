@@ -48,23 +48,162 @@
   </div>
    </body>  
   
-<body>
-  <form action="http://64.225.127.211:6001/coffeeset" method="POST">
-    <div class="container">
-      <h1 align='center'>Polar Coffee</h1 al>
-      <p>Request your desired temperature.</p>
-      <hr>
-      <input type="radio" name="temperature" id="hot" value="Hot">
-      <label for="hot">Hot</label><br>
-      <input type="radio" name="temperature" id="cold" value="Cold">
-      <label for="cold">Cold</label><br>
-      <p>&nbsp;</p> 
-      <p>&nbsp;</p>
-      <input type="submit" value="Submit">
-      </hr>
+
+  
+  
+  
+  
+  
+  
+  
+  
+
+    <link rel="stylesheet" type="text/css" href="setter.css">
+<head>
+<title> Design your Coffee </title>
+<style>
+    
+    .hidden{
+        display: none !important;
+    }
+</style>
+</head>
+<div id="menuoption">
+    <p id = "user">When would you like your coffee, {{username}}?</p>
+    <button class="menubuttons" onclick="script1()">ASAP
+    <span></span><span></span><span></span><span></span></button>
+    <button class="menubuttons" onclick="script2()">Schedule
+    <span></span><span></span><span></span><span></span></button>
+</div>
+
+
+<form id="asapForm" action="/setcoffeex" method="POST" onsubmit="return showtimer();">
+    <div id="Temperaturex">
+        <div>
+            <input type = "radio" name ="temperature" id ="hot1" value="Hot">
+            <label for="hot">Hot</label><br>
+            <input type = "radio" name ="temperature" id ="cold1" value="Cold">
+            <label for="cold">Cold</label><br>
+
+            <input id='datehiddden' type='hidden' value='asap' name='date'>
+            <input id='timehiddden' type='hidden' value='asap' name='time'>
+            <input id='recurhiddden' type='hidden' value='asap' name='recur'>
+        </div>
+        <input type="submit" value="Submit">
     </div>
-  </form>
-</body>
+</form>
+
+
+<form id="schedForm" action="/setcoffeex" method="POST" onsubmit="return showtimer();">
+    <div id="Temperature">
+        <div>
+            <input type = "radio" name ="temperature" id ="hot2" value="Hot">
+            <label for="hot">Hot</label><br>
+            <input type = "radio" name ="temperature" id ="cold2" value="Cold">
+            <label for="cold">Cold</label><br>
+
+        </div>
+        <div id="scheduler">
+            <p class="optiontitle"> Schedule a Coffee </p>
+            <div id="fulldate">
+                <p id="year">YYYY</p> 
+                <p id="month">MM</p> 
+                <p id="day">DD</p>
+                <!--<input class="dt" type="time" placeholder="Date">-->
+                <!--<input class="dt"  name="time" type="time" placeholder="Time">-->
+                <input type="date" name="date" placeholder="Date">
+                <input type="time" name="time" placeholder="Time">
+                <input id='checkboxhiddden' type='hidden' value='off' name='recur'>
+                <input id="check"type="checkbox" name="recur" placeholder="Recur">
+                
+            
+            </div>
+        </div>
+        <input type="submit" value="Submit">
+    </div>
+</form>
+
+
+  
+  
+
+<script>
+    /*
+    if(document.getElementById("check").checked) {
+    document.getElementById('checkboxhidden').disabled = true;
+}*/
+setInterval(function(){
+    slidervalue = document.getElementById("slidervalue").innerHTML=document.getElementById("myRange").value + "%";
+    console.log(document.getElementById("myRange").value);
+    sv = document.getElementById("myRange").value;
+},10);
+//var tempinput = document.getElementById("myRange");
+/*
+function submit(){
+    if(sv >=50){
+        console.log("okkkkkkkkkkkkkkk");
+        //tempinput.value="Hot"
+        document.getElementById("myForm").submit();
+    }
+    else{
+        //tempinput.value="Cold"
+        document.getElementById("myForm").submit();
+    }
+    
+}*/
+var ASAP = document.getElementById("asapForm");
+var sched = document.getElementById("schedForm");
+var schod = document.getElementById("scheduler");
+function script1(){
+    
+        //var ASAP = document.getElementById("myForm");
+        ASAP.style.display="block";
+        sched.style.display="none";
+        //schod.style.display="none";
+
+}
+function script2(){
+    
+    //var sched = document.getElementById("myForm");
+    sched.style.display="block";
+    ASAP.style.display="none";
+
+    var d = new Date();
+    var year = d.getFullYear();
+    var months = ["January", "February", "March", "April", "May", "June", 
+           "July", "August", "September", "October", "November", "December"];
+    var day = d.getDate();
+    
+    document.getElementById("year").innerHTML = year;
+    document.getElementById("month").innerHTML = months[d.getMonth()];
+    document.getElementById("day").innerHTML = day;
+   /*
+   var sel = document.getElementById("dayselector");
+   var addoption = document.createElement('option');
+    for(i=1; day<=i<32; i++){
+   //var sel = document.getElementById("dayselector");
+   //var addoption = document.createElement('option');
+   addoption.appendChild(document.createTextNode(i));
+   addoption.value = i; 
+   sel.appendChild(addoption); 
+}*/
+
+}    
+sched.style.display="none";
+ASAP.style.display="none";
+</script>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   </table></center>
   <hr>
