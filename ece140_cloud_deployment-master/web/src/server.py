@@ -51,7 +51,7 @@ def setcoffeex(req):
   print("rannnnn2")
   print(data)
 
-  coffeetemp = requests.post('/coffeeset', data=data).json()
+  coffeetemp = requests.post('coffeeset', data=data).json()
   print("whatalifemann")
   return render_to_response('templates/timer.html', {}, request =req)
 
