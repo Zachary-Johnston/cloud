@@ -77,29 +77,22 @@
 </div>
 
 
-<form id="asapForm" action="/setcoffeex" method="POST">
     <div id="Temperaturex">
         <div>
-            <input type = "radio" name ="temperature" id ="hot1" value="Hot">
+            <input type = "radio" name ="temperatureNow" id ="hot1" value="Hot">
             <label for="hot">Hot</label><br>
-            <input type = "radio" name ="temperature" id ="cold1" value="Cold">
+            <input type = "radio" name ="temperatureNow" id ="cold1" value="Cold">
             <label for="cold">Cold</label><br>
-
-            <input id='datehiddden' type='hidden' value='asap' name='date'>
-            <input id='timehiddden' type='hidden' value='asap' name='time'>
-            <input id='recurhiddden' type='hidden' value='asap' name='recur'>
         </div>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" onclick="request_now()">
     </div>
-</form>
 
 
-<form id="schedForm" action="/setcoffeex" method="POST">
     <div id="Temperature">
         <div>
-            <input type = "radio" name ="temperature" id ="hot2" value="Hot">
+            <input type = "radio" name ="temperatureLater" id ="hot2" value="Hot">
             <label for="hot">Hot</label><br>
-            <input type = "radio" name ="temperature" id ="cold2" value="Cold">
+            <input type = "radio" name ="temperatureLater" id ="cold2" value="Cold">
             <label for="cold">Cold</label><br>
 
         </div>
@@ -119,39 +112,13 @@
             
             </div>
         </div>
-        <input type="submit" value="Submit">
-    </div>
-</form>
-  
-  
-  
-</script>
-
-  
+        <input type="submit" value="Submit" onclick="request_later()">
+    </div> 
   
 
 <script>
-    /*
-    if(document.getElementById("check").checked) {
-    document.getElementById('checkboxhidden').disabled = true;
-}*/
-
-//var tempinput = document.getElementById("myRange");
-/*
-function submit(){
-    if(sv >=50){
-        console.log("okkkkkkkkkkkkkkk");
-        //tempinput.value="Hot"
-        document.getElementById("myForm").submit();
-    }
-    else{
-        //tempinput.value="Cold"
-        document.getElementById("myForm").submit();
-    }
-    
-}*/
-var ASAP = document.getElementById("asapForm");
-var sched = document.getElementById("schedForm");
+var ASAP = document.getElementById("Temperaturex");
+var sched = document.getElementById("Temperature");
 var schod = document.getElementById("scheduler");
 function script1(){
     
@@ -176,18 +143,58 @@ function script2(){
     document.getElementById("year").innerHTML = year;
     document.getElementById("month").innerHTML = months[d.getMonth()];
     document.getElementById("day").innerHTML = day;
-   /*
-   var sel = document.getElementById("dayselector");
-   var addoption = document.createElement('option');
-    for(i=1; day<=i<32; i++){
-   //var sel = document.getElementById("dayselector");
-   //var addoption = document.createElement('option');
-   addoption.appendChild(document.createTextNode(i));
-   addoption.value = i; 
-   sel.appendChild(addoption); 
-}*/
 
 }    
+function request_to_server(request){
+        let post_URL = "/coffeeset"
+        console.log(request)
+      // Send the POST and receive a response 
+      fetch(post_URL, 
+      {
+        method: "POST",
+        body: JSON.stringify(request)  //Sending data as a JSON string
+                                      //NOTE: request.toString() will return the string "[object Object]"
+      })
+      // After sending, get the response
+      .then((response) =>{
+        console.log("Response Received")
+        //window.location.href ="/timer"; //getBack to this
+        to_timer();
+      })
+      // If there is an error
+      .catch((error)=>{
+            console.log("Massive Error");
+            console.error(error);
+      })
+
+    };
+function to_timer(){
+  window.location.href ="/timer";
+};
+function request_now(){
+      // Build your POST Request
+      let request = {};
+      request["temperature"] = document.getElementById("cold1").value;
+      request["date"] = "asap";
+      request["time"] = "asap";
+      request["recur"] = "asap";
+      console.log(request)
+
+      request_to_server(request)
+    };
+
+function request_later() {
+      // Build your POST Request
+      let request = {};
+      request["temperature"] = document.getElementsByName("temperatureLater").value
+      request["date"] = document.getElementById("year").value+ "-" +document.getElementById("month").value+
+                        "-" + document.getElementById("day").value
+     // request["time"] = document.getElementById("timeNow").value
+      request["recur"] = document.getElementById("check").value
+
+       // Send the POST and receive a response 
+       request_to_server(request)       
+    };
 sched.style.display="none";
 ASAP.style.display="none";
 </script>
