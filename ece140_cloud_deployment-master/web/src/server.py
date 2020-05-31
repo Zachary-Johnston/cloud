@@ -35,15 +35,22 @@ def show_users(req):
 
 
 
-def setcoffeex(req):
+def coffeeset(req):
+  # View the Dictionary that was Posted
+  # Get the fname
+  print("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
   info = req.json_body
   print(info)
-  #msg ='{"temperature": "'+temp+'", "date": "' +date+ '", "time": "'+time+'", "recur": "'+recur+'"}'
 
-  #coffeetemp = requests.post('https://polarcoffee.org/coffeeset', data=data).json()
+  msg = json.dumps(info)
+  print(msg)
   
-  print("whatalifemann")
-  return render_to_response('templates/timer.html', {}, request =req)
+  records = {}
+  records['success'] = True
+  records = Response(body=json.dumps(records))
+  records.headers.update({'Access-Control-Allow-Origin': '*',})
+
+  return records
 
 
 
@@ -408,8 +415,8 @@ if __name__ == '__main__':
   config.add_route('coffeeset', '/coffeeset') # Added route for timer
   config.add_view(coffeeset, route_name='coffeeset')
   
-  config.add_route('setcoffeex', '/setcoffeex') # Added route for timer
-  config.add_view(setcoffeex, route_name='setcoffeex')
+  c#onfig.add_route('setcoffeex', '/setcoffeex') # Added route for timer
+  c#onfig.add_view(setcoffeex, route_name='setcoffeex')
   
   
   
