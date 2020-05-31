@@ -415,8 +415,8 @@ if __name__ == '__main__':
   config.add_route('coffeeset', '/coffeeset') # Added route for timer
   config.add_view(coffeeset, route_name='coffeeset')
   
-  c#onfig.add_route('setcoffeex', '/setcoffeex') # Added route for timer
-  c#onfig.add_view(setcoffeex, route_name='setcoffeex')
+  #config.add_route('setcoffeex', '/setcoffeex') # Added route for timer
+  #config.add_view(setcoffeex, route_name='setcoffeex')
   
   
   
