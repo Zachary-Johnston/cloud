@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script><html>
   <style>
     body {
        background-image: url('coffee.jpg');
@@ -102,14 +102,9 @@
                 <p id="year">YYYY</p> 
                 <p id="month">MM</p> 
                 <p id="day">DD</p>
-                <!--<input class="dt" type="time" placeholder="Date">-->
-                <!--<input class="dt"  name="time" type="time" placeholder="Time">-->
-                <input type="date" name="date" placeholder="Date">
-                <input type="time" name="time" placeholder="Time">
-                <input id='checkboxhiddden' type='hidden' value='off' name='recur'>
-                <input id="check"type="checkbox" name="recur" placeholder="Recur">
-                
-            
+                <input type="date" id="date-input" placeholder="Date">
+                <input type="time" id="time-input" placeholder="Time">
+                <input class="messageCheckbox" type="checkbox">           
             </div>
         </div>
         <input type="submit" value="Submit" onclick="request_later()">
@@ -139,14 +134,14 @@ function script2(){
     var months = ["January", "February", "March", "April", "May", "June", 
            "July", "August", "September", "October", "November", "December"];
     var day = d.getDate();
-    
+
     document.getElementById("year").innerHTML = year;
     document.getElementById("month").innerHTML = months[d.getMonth()];
     document.getElementById("day").innerHTML = day;
 
 }    
 function request_to_server(request){
-        let post_URL = "http://64.225.127.211:6001/coffeeset"
+        let post_URL = "http://localhost:81/coffeeset"
         console.log(request)
       // Send the POST and receive a response 
       fetch(post_URL, 
@@ -157,14 +152,15 @@ function request_to_server(request){
       })
       // After sending, get the response
       .then((response) =>{
-        console.log("Response Received")
-        //window.location.href ="/timer"; //getBack to this
+        console.log("Response Received");
         to_timer();
+        //window.location.href ="/timer"; //getBack to this
       })
       // If there is an error
       .catch((error)=>{
             console.log("Massive Error");
             console.error(error);
+            //to_timer();
       })
 
     };
@@ -187,10 +183,14 @@ function request_later() {
       // Build your POST Request
       let request = {};
       request["temperature"] = document.getElementsByName("temperatureLater").value
-      request["date"] = document.getElementById("year").value+ "-" +document.getElementById("month").value+
-                        "-" + document.getElementById("day").value
-     // request["time"] = document.getElementById("timeNow").value
-      request["recur"] = document.getElementById("check").value
+      var date = new Date($('#date-input').val());
+      day = date.getDate();
+      month = date.getMonth() + 1;
+      year = date.getFullYear();
+
+      request["date"] = [day, month, year].join('/');
+      //request["time"] = getElementById("time-input");
+      request["recur"] = document.querySelector('.messageCheckbox').checked;
 
        // Send the POST and receive a response 
        request_to_server(request)       
