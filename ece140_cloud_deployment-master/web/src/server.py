@@ -36,41 +36,97 @@ def show_users(req):
 
 
 def setcoffeex(req):
-  print(req)
-  print("rannnnn")
-  data = {"temperature": req.params["temperature"]}
+  print("BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+  temperature=req.params["temperature"]
+  print(temperature)
+  date=req.params["date"]
+  print(date)
+  time=req.params["time"]
+  print(time)
+  recur=req.params["recur"]
+  print(recur)
+
+ 
+  data = {"temperature": temperature, "date": date, "time": time, "recur": recur}
   print("rannnnn2")
   print(data)
-  coffeetemp = requests.post('https://64.225.127.211/coffeeset', data=data).json()
-  print("whatalifemann")
-  return timer(req)
 
-def coffeeset(req):
+  coffeetemp = requests.post(REST_SERVER + '/coffeeset', data=data).json()
+  print("whatalifemann")
+  return render_to_response('templates/timer.html', {}, request=req)
+
+
+
+
+
+
+
+
+
+#def coffeeset(req):
  # View the Dictionary that was Posted
  # Get the fname
- print("bbbeeeeeppppp")
- temp = str(req.params.getall("temperature"))
+ #print("bbbeeeeeppppp")
+ #temp = str(req.params.getall("temperature"))
  # Get rid of the [] that comes from req
- print(temp)
- start = time.time()
- print(start)
- temp = temp[2:len(temp)-2]
- print(temp)
- db = mysql.connect(user=db_user, password=db_pass, host=db_host, database=db_name)
- cursor = db.cursor()
+ #print(temp)
+ #start = time.time()
+ #print(start)
+ #temp = temp[2:len(temp)-2]
+ #print(temp)
+ #db = mysql.connect(user=db_user, password=db_pass, host=db_host, database=db_name)
+ #cursor = db.cursor()
  # Insert Records
- query = "insert into cofset (coffeeid, temperature, time) values (%s, %s, %s)"
- values = [
- ("testid", temp, start),
- ]
- print("GOT THIS FAR1")
- cursor.executemany(query, values)
- db.commit()
- print("GOT THIS FAR2")
- cursor.execute("SELECT coffeeid, temperature, time from cofset;")
- records = cursor.fetchall()
- print(records)
- return timer(req)
+ #query = "insert into cofset (coffeeid, temperature, time) values (%s, %s, %s)"
+ #values = [
+ #("testid", temp, start),
+ #]
+ #print("GOT THIS FAR1")
+ #cursor.executemany(query, values)
+ #db.commit()
+ #print("GOT THIS FAR2")
+ #cursor.execute("SELECT coffeeid, temperature, time from cofset;")
+ #records = cursor.fetchall()
+ #print(records)
+ #return timer(req)
+  
+  
+def coffeeset(req):
+  # View the Dictionary that was Posted
+  # Get the fname
+  print("bbbeeeeeppppp")
+  temp = str(req.params.getall("temperature"))
+  date = str(req.params.getall("date"))
+  time = str(req.params.getall("time"))
+  recur = str(req.params.getall("recur"))
+  # Get rid of the [] that comes from req
+  temp = temp[2:len(temp)-2]
+  date = date[2:len(date)-2]
+  time = time[2:len(time)-2]
+  recur = recur[2:len(recur)-2]
+  msg ='{"temperature": "'+temp+'", "date": "' +date+ '", "time": "'+time+'", "recur": "'+recur+'"}'
+  print(msg)
+  # SEND TO RASPBERRY PI WITH MQTT
+  client = mqtt.Client("JJJ")
+  client.connect("polarcoffee.org", port=1883, keepalive=60, bind_address="")
+  client.publish("test", msg)
+
+  #SEND TO DATABASE
+  #db = mysql.connect(user=db_user, password=db_pass, host=db_host, database=db_name)
+  #cursor = db.cursor()
+  # Insert Records
+  #query = "insert into cofset (coffeeid, temperature, time) values (%s, %s, %s)"
+  #values = [
+  #("testid", temp, time),
+  #]
+  #print("GOT THIS FAR1")
+  #cursor.executemany(query, values)
+ # db.commit()
+ # print("GOT THIS FAR2")
+  #cursor.execute("SELECT coffeeid, temperature, time from cofset;")
+  #records = cursor.fetchall()
+  #print(records)
+   return render_to_response('templates/timer.html', {}, request=req)
 
 def setcoffee(req):
   return render_to_response('templates/setter.html', {'username': req.params['username']}, request =req)
