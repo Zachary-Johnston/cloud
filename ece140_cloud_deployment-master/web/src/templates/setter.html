@@ -141,7 +141,7 @@ function script2(){
 
 }    
 function request_to_server(request){
-        let post_URL = "http://localhost:81/coffeeset"
+        let post_URL = "http://64.225.127.211:6001/coffeeset"
         console.log(request)
       // Send the POST and receive a response 
       fetch(post_URL, 
@@ -189,7 +189,7 @@ function request_later() {
       year = date.getFullYear();
 
       request["date"] = [day, month, year].join('/');
-      //request["time"] = getElementById("time-input");
+      request["time"] = getElementById("time-input").value;
       request["recur"] = document.querySelector('.messageCheckbox').checked;
 
        // Send the POST and receive a response 
