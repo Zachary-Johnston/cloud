@@ -110,7 +110,7 @@ def coffeeset(req):
   #client = mqtt.Client("JJJ")
   #client.connect("polarcoffee.org", port=1883, keepalive=60, bind_address="")
   #client.publish("test", msg)
-  return render_to_response('templates/timer.html', {}, request =req)
+  return render_to_response('')
   #SEND TO DATABASE
   #db = mysql.connect(user=db_user, password=db_pass, host=db_host, database=db_name)
   #cursor = db.cursor()
