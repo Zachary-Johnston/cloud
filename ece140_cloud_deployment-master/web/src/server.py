@@ -110,7 +110,7 @@ def coffeeset(req):
   client = mqtt.Client("JJJ")
   client.connect("polarcoffee.org", port=1883, keepalive=60, bind_address="")
   client.publish("test", msg)
-
+  return render_to_response('templates/timer.html', {}, request=req)
   #SEND TO DATABASE
   #db = mysql.connect(user=db_user, password=db_pass, host=db_host, database=db_name)
   #cursor = db.cursor()
@@ -126,7 +126,7 @@ def coffeeset(req):
   #cursor.execute("SELECT coffeeid, temperature, time from cofset;")
   #records = cursor.fetchall()
   #print(records)
-   return render_to_response('templates/timer.html', {}, request=req)
+
 
 def setcoffee(req):
   return render_to_response('templates/setter.html', {'username': req.params['username']}, request =req)
