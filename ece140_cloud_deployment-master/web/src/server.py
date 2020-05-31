@@ -107,9 +107,9 @@ def coffeeset(req):
   msg ='{"temperature": "'+temp+'", "date": "' +date+ '", "time": "'+time+'", "recur": "'+recur+'"}'
   print(msg)
   # SEND TO RASPBERRY PI WITH MQTT
-  client = mqtt.Client("JJJ")
-  client.connect("polarcoffee.org", port=1883, keepalive=60, bind_address="")
-  client.publish("test", msg)
+  #client = mqtt.Client("JJJ")
+  #client.connect("polarcoffee.org", port=1883, keepalive=60, bind_address="")
+  #client.publish("test", msg)
   return timer(req)
   #SEND TO DATABASE
   #db = mysql.connect(user=db_user, password=db_pass, host=db_host, database=db_name)
