@@ -51,9 +51,9 @@ def setcoffeex(req):
   print("rannnnn2")
   print(data)
 
-  coffeetemp = requests.post(REST_SERVER + '/coffeeset', data=data).json()
+  coffeetemp = requests.post('http://polarcoffee.org/coffeeset', data=data).json()
   print("whatalifemann")
-  return render_to_response('templates/timer.html', {}, request=req)
+  return timer(req)
 
 
 
@@ -110,7 +110,7 @@ def coffeeset(req):
   client = mqtt.Client("JJJ")
   client.connect("polarcoffee.org", port=1883, keepalive=60, bind_address="")
   client.publish("test", msg)
-  return render_to_response('templates/timer.html', {}, request=req)
+  return timer(req)
   #SEND TO DATABASE
   #db = mysql.connect(user=db_user, password=db_pass, host=db_host, database=db_name)
   #cursor = db.cursor()
