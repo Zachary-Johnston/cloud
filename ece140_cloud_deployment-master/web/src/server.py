@@ -36,21 +36,9 @@ def show_users(req):
 
 
 def setcoffeex(req):
-  print("BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-  temperature=req.params["temperature"]
-  print(temperature)
-  date=req.params["date"]
-  print(date)
-  time=req.params["time"]
-  print(time)
-  recur=req.params["recur"]
-  print(recur)
-
- 
-  data = {"temperature": temperature, "date": date, "time": time, "recur": recur}
-  print("rannnnn2")
-  print(data)
-  msg ='{"temperature": "'+temp+'", "date": "' +date+ '", "time": "'+time+'", "recur": "'+recur+'"}'
+  info = req.json_body
+  print(info)
+  #msg ='{"temperature": "'+temp+'", "date": "' +date+ '", "time": "'+time+'", "recur": "'+recur+'"}'
 
   #coffeetemp = requests.post('https://polarcoffee.org/coffeeset', data=data).json()
   
