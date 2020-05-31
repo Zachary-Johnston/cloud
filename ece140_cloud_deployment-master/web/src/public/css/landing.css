@@ -98,6 +98,15 @@ text-decoration: none !important;
   color:#ffffff;
 }
 
+#Temperature, #Temperaturex{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.1);;
+}
+
 .rounded_button a:hover, .rounded_button:hover {       
   -webkit-transition:  all 300ms ease-in 0s;
   -moz-transition:  all 300ms ease-in 0s;
