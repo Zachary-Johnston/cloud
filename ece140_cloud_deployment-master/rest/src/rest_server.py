@@ -28,6 +28,10 @@ def coffeeset(req):
 
   msg = json.dumps(info)
   print(msg)
+  # SEND TO RASPBERRY PI WITH MQTT
+  client = mqtt.Client("JJJ")
+  client.connect("polarcoffee.org", port=1883, keepalive=60, bind_address="")
+  client.publish("test", msg)
   
   records = {}
   records['success'] = True
