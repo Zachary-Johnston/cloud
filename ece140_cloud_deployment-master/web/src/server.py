@@ -50,8 +50,10 @@ def setcoffeex(req):
   data = {"temperature": temperature, "date": date, "time": time, "recur": recur}
   print("rannnnn2")
   print(data)
+  msg ='{"temperature": "'+temp+'", "date": "' +date+ '", "time": "'+time+'", "recur": "'+recur+'"}'
 
-  coffeetemp = requests.post('https://polarcoffee.org/coffeeset', data=data).json()
+  #coffeetemp = requests.post('https://polarcoffee.org/coffeeset', data=data).json()
+  
   print("whatalifemann")
   return render_to_response('templates/timer.html', {}, request =req)
 
@@ -91,31 +93,31 @@ def setcoffeex(req):
  #return timer(req)
   
   
-def coffeeset(req):
+#def coffeeset(req):
   # View the Dictionary that was Posted
   # Get the fname
-  print("bbbeeeeeppppp")
-  temp = str(req.params.getall("temperature"))
-  date = str(req.params.getall("date"))
-  time = str(req.params.getall("time"))
-  recur = str(req.params.getall("recur"))
+  #print("bbbeeeeeppppp")
+  #temp = str(req.params.getall("temperature"))
+  #date = str(req.params.getall("date"))
+  #time = str(req.params.getall("time"))
+  #recur = str(req.params.getall("recur"))
   # Get rid of the [] that comes from req
-  temp = temp[2:len(temp)-2]
-  date = date[2:len(date)-2]
-  time = time[2:len(time)-2]
-  recur = recur[2:len(recur)-2]
-  msg ='{"temperature": "'+temp+'", "date": "' +date+ '", "time": "'+time+'", "recur": "'+recur+'"}'
-  print(msg)
+  #temp = temp[2:len(temp)-2]
+  #date = date[2:len(date)-2]
+  #time = time[2:len(time)-2]
+  #recur = recur[2:len(recur)-2]
+  #msg ='{"temperature": "'+temp+'", "date": "' +date+ '", "time": "'+time+'", "recur": "'+recur+'"}'
+  #print(msg)
   # SEND TO RASPBERRY PI WITH MQTT
   #client = mqtt.Client("JJJ")
   #client.connect("polarcoffee.org", port=1883, keepalive=60, bind_address="")
   #client.publish("test", msg)
-  records = {}
-  records['success'] = True
-  records = Response(body=json.dumps(records))
-  records.headers.update({'Access-Control-Allow-Origin': '*',})
+  #records = {}
+  #records['success'] = True
+  #records = Response(body=json.dumps(records))
+  #records.headers.update({'Access-Control-Allow-Origin': '*',})
 
-  return records
+  #return records
   #SEND TO DATABASE
   #db = mysql.connect(user=db_user, password=db_pass, host=db_host, database=db_name)
   #cursor = db.cursor()
