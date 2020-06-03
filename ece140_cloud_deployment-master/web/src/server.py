@@ -3,6 +3,10 @@ from pyramid.config import Configurator
 from pyramid.renderers import render_to_response
 from pyramid.response import Response
 
+from pyramid.httpexceptions import HTTPFound            # Perform redirects from the backend to other routes
+# NOTE: this is unencrypted but signed session stored in client cookies. It isn't the most secure, but at least it's baked into Pyramid. Shame on Pyramid!
+from pyramid.session import SignedCookieSessionFactory  # The default session factory to generate session objects
+
 import mysql.connector as mysql
 import requests
 import json
