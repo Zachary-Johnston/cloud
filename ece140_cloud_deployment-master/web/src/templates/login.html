@@ -79,7 +79,9 @@ document.getElementById("Polar").onclick = function() {
   <body>
   <form action="/post_login" method="POST">
     <div class="container">
-      <p style="font-family:times;">{{tag}}</p>
+      {% if error %}
+      <p> {{ error }} </p>
+      {% endif %}
       <h1 align='center'>Polar Coffee</h1 al>
       <hr>
       <label for="Email"><b style="color: #ffffff;">Email</b></label>
