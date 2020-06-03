@@ -36,6 +36,59 @@ def show_users(req):
 
 
 
+# Route to retrieve the login page
+def login(req):
+  error = req.session.pop_flash('login_error')
+  error = error[0] if error else ''
+  return render_to_response('templates/login.html', {'error': error})
+
+# Route to retrieve the LOGGED-IN homepage
+def get_home(req):
+  if 'user' in req.session: # logged in
+    return render_to_response('templates/portal.html',{'user':req.session['user']})
+  else: # not logged in
+    return HTTPFound(req.route_url("login"))
+
+# Route to handle login form submissions coming from the login page
+def post_login(req):
+  email = None
+  password = None
+  if req.method == "POST":
+    email = req.params['email']
+    password = req.params['password']
+
+  # Connect to the database and try to retrieve the user
+  db = mysql.connect(host=db_host, database=db_name, user=db_user, passwd=db_pass)
+  cursor = db.cursor()
+  query = "SELECT Email, Password FROM Users WHERE Email='%s';" % email #DO I NEED TO MAKE EMAIL CAPITAL E??
+  cursor.execute(query)
+  user = cursor.fetchone() # will return a tuple (email, password) if user is found and None otherwise
+  db.close()
+
+  # If user is found and the password is valid, store in session, and redirect to the homepage
+  # Otherwise, redirect back to the login page with a flash message
+  # Note: passwords should be hashed and encrypted in actual production solutions!
+  if user is not None and user[1] == password: #DO I NEED TO MAKE PASSWORD CAPITAL P??
+    req.session['user'] = user[0] # set the session variable
+    return HTTPFound(req.route_url("get_home"))
+  else:
+    req.session.invalidate() # clear session
+    req.session.flash('Invalid login attempt. Please try again.', 'login_error')
+    return HTTPFound(req.route_url("login"))
+
+
+  
+  
+  
+
+
+
+
+
+
+
+
+
 
 
 
@@ -55,14 +108,6 @@ def coffeeset(req):
   records.headers.update({'Access-Control-Allow-Origin': '*',})
 
   return records
-
-
-
-
-
-
-
-
 
 #def coffeeset(req):
  # View the Dictionary that was Posted
@@ -290,8 +335,8 @@ def pricing(req):
 def features(req):
   return render_to_response('templates/features.html', {}, request =req)
  
-def login(req):
-  return render_to_response('templates/login.html', {}, request =req)
+#def login(req):
+  #return render_to_response('templates/login.html', {}, request =req)
 
 def metrics(req):
   return render_to_response('templates/metrics.html', {}, request =req)
@@ -379,8 +424,26 @@ if __name__ == '__main__':
   config.add_view(add_users_db, route_name='add_new_user', renderer='json')
   
 
+  
+  
+  
+  
+  
   config.add_route('login', '/login')
   config.add_view(login, route_name='login')
+
+  config.add_route('get_home', '/home')
+  config.add_view(get_home, route_name='get_home')
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
  
   config.add_route('post_login', '/post_login')
   config.add_view(post_login, route_name='post_login', request_method = "POST")
@@ -451,6 +514,11 @@ if __name__ == '__main__':
 
   config.add_static_view(name='/', path='./public', cache_max_age=3600)
 
+  
+    # Create the session using a signed
+  session_factory = SignedCookieSessionFactory(os.environ['SESSION_SECRET_KEY'])
+  config.set_session_factory(session_factory)
+  
   app = config.make_wsgi_app()
   server = make_server('0.0.0.0', 6000, app)
   server.serve_forever()
