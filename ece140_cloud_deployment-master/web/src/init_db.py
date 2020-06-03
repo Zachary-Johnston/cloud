@@ -27,7 +27,7 @@ try:
   cursor.execute("""
     CREATE TABLE Users (
       id integer  AUTO_INCREMENT PRIMARY KEY,
-      Username  VARCHAR(50) NOT NULL,
+      Email  VARCHAR(50) NOT NULL,
       Password   VARCHAR(50) NOT NULL,
       Status       VARCHAR(50) NOT NULL
     );
@@ -38,10 +38,10 @@ except:
 # Insert Records into Users
 query = "insert into Users (Email, Password, Status) values (%s, %s, %s)"
 values = [
-  ('Jesi','jesi@ucsd.edu','Valid'),
-  ('Jesus','jesus@ucsd.edu','Pending'),
-  ('Zack','zack@ucsd.edu','Pending'),
-  ('John','john@ucsd.edu','Pending'),
+  ('jesi@ucsd.edu','Jesi','Valid'),
+  ('jesus@ucsd.edu','Jesus','Pending'),
+  ('zack@ucsd.edu','Zack','Pending'),
+  ('john@ucsd.edu','John','Pending'),
 ]
 cursor.executemany(query, values)
 db.commit()
