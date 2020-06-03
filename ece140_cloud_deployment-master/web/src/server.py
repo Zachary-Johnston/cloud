@@ -203,7 +203,7 @@ def add_new_user(req):
   # print(req.params) #debugging
   data = {"Email": req.params['Email'], "Password":  req.params['Password']}
   #New_user = requests.post(REST_SERVER + '/new_users', data=data).json()
-  New_user = requests.post('https://64.225.127.211:6001/new_users', data=data).json()
+  New_user = requests.post('https://polarcoffee.org:6001/new_users', data=data).json()
   return render_to_response('templates/portal.html', {}, request=req)
 
 def add_users_db(req):
@@ -253,7 +253,7 @@ def changestatus(req):
 def correct_password(req):
   data = {"Email": req.params['Email'], "Password":  req.params['Password']}
   #validity = requests.post(REST_SERVER + '/check_password', data = data).json()
-  validity = requests.post('https://64.225.127.211:6001/check_password', data = data).json()
+  validity = requests.post('https://polarcoffee.org:6001/check_password', data = data).json()
   return validity
 
 def valid_user(req):
@@ -262,7 +262,7 @@ def valid_user(req):
   except:
     data = req
   #validity = requests.post(REST_SERVER + '/check_validity', data = data).json()
-  validity = requests.post('https://64.225.127.211:6001/check_validity', data = data).json()
+  validity = requests.post('https://polarcoffee.org:6001/check_validity', data = data).json()
   return validity
 
 # Route to validate login credentials...
@@ -270,7 +270,7 @@ def post_login(req):
   if valid_user(req) and correct_password(req):
     return menuportal(req)#controller(req)#
   else:
-    return render_to_response('templates/did_log_in.html', {'tag': 'Incorrect Password'}, request = req)
+    return render_to_response('templates/login.html', {'tag': 'Incorrect Password'}, request = req)
 
 # These currently just render the html files 
 def sign_up(req):
@@ -286,7 +286,7 @@ def features(req):
   return render_to_response('templates/features.html', {}, request =req)
  
 def login(req):
-  return render_to_response('templates/did_log_in.html', {}, request =req)
+  return render_to_response('templates/login.html', {}, request =req)
 
 def metrics(req):
   return render_to_response('templates/metrics.html', {}, request =req)
@@ -314,19 +314,19 @@ def timer(req):
 
 def admin(req):
   #Users = requests.get(REST_SERVER + "/users").json()
-  Users = requests.get("https://64.225.127.211:6001/users").json()
+  Users = requests.get("https://polarcoffee.org:6001/users").json()
   return render_to_response('templates/adminportal.html',{'users': Users}, request =req)
 
 def tracker(req):
   #moves = requests.get(REST_SERVER + "/requested_moves").json()
-  moves = requests.get("https://64.225.127.211:6001/requested_moves").json()
+  moves = requests.get("https://polarcoffee.org:6001/requested_moves").json()
   return render_to_response('templates/tracker.html', {'Email': req.params['Email'], 'moves': moves}, request =req)
  
 def controller(req):
   return render_to_response('templates/controller.html', {'Email': req.params['Email']}, request =req)
 
 def menuportal(req):
-  return render_to_response('templates/menuportal.html', {'Email': req.params['Email']}, request =req)
+  return render_to_response('templates/portal.html', {'Email': req.params['Email']}, request =req)
 
 def post_menu(req):
   data = {"nextLocation":  req.params['input'], "Email": req.params['Email']}
@@ -404,7 +404,7 @@ if __name__ == '__main__':
   
   
   
-  
+
   
   config.add_route('setter', '/setter') # Added route for setter
   config.add_view(setter, route_name='setter')
