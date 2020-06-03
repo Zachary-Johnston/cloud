@@ -19,6 +19,59 @@ db_pass = os.environ['MYSQL_PASSWORD']
 db_name = os.environ['MYSQL_DATABASE']
 db_host = os.environ['MYSQL_HOST']
 
+
+
+
+
+
+
+def check_password_db(req):
+  newPsw = str(req.params.getall("Password"))
+  newPsw = newPsw[2:len(newPsw)-2]
+  newName = str(req.params.getall("Username"))
+  newName = newName[2:len(newName)-2]
+  # Connect to the database
+  db = mysql.connect(user=db_user, password=db_pass, host=db_host, database=db_name)
+  cursor = db.cursor()
+  cursor.execute("SELECT Username from Users WHERE Username='%s';" % newName)
+  userResult = cursor.fetchall()
+  db = mysql.connect(user=db_user, password=db_pass, host=db_host, database=db_name)
+  cursor = db.cursor()
+  cursor.execute("SELECT Password from Users WHERE Password='%s';" % newPsw)
+  passwordResult = cursor.fetchall()
+  passwordResult = str(passwordResult)
+  passwordResult = passwordResult[3:len(newPsw)+3]
+  userResult = str(userResult)
+  userResult = userResult[3:len(newName)+3]
+  print(userResult)
+  if newName == userResult:
+    if passwordResult == newPsw:
+     return True
+  return False
+
+
+def validity_db(req):
+  newName = str(req.params.getall("Username"))
+  newName = newName[2:len(newName)-2]
+  # Connect to the database
+  db = mysql.connect(user=db_user, password=db_pass, host=db_host, database=db_name)
+  cursor = db.cursor()
+  cursor.execute("SELECT Status from Users WHERE Username='%s';" % newName)
+  validityResult = cursor.fetchall()
+  validityResult = str(validityResult)
+  validityResult = validityResult[3:8]
+  print(validityResult)
+  print(str(validityResult) == "Valid")
+  if str(validityResult) == "Valid":
+    return True
+  return False
+
+
+
+
+
+
+
 def coffeeset(req):
   # View the Dictionary that was Posted
   # Get the fname
@@ -45,6 +98,12 @@ if __name__ == '__main__':
 
   config.add_route('coffeeset', '/coffeeset') # Added route for timer
   config.add_view(coffeeset, route_name='coffeeset')
+  
+  config.add_route('check_validity', '/check_password')
+  config.add_view(check_password_db, route_name='check_validity', renderer='json')
+  
+  config.add_route('validity', '/check_validity')
+  config.add_view(validity_db, route_name='validity', renderer='json')
 
               ##############################################################################
               #                        Adding Routes to Database                           #
