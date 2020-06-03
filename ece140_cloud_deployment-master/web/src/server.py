@@ -54,13 +54,13 @@ def post_login(req):
   email = None
   password = None
   if req.method == "POST":
-    email = req.params['email']
-    password = req.params['password']
+    email = req.params['Email']
+    password = req.params['Password']
 
   # Connect to the database and try to retrieve the user
   db = mysql.connect(host=db_host, database=db_name, user=db_user, passwd=db_pass)
   cursor = db.cursor()
-  query = "SELECT Email, Password FROM Users WHERE Email='%s';" % email #DO I NEED TO MAKE EMAIL CAPITAL E??
+  query = "SELECT Email, Password FROM Users WHERE Email='%s';" % email 
   cursor.execute(query)
   user = cursor.fetchone() # will return a tuple (email, password) if user is found and None otherwise
   db.close()
@@ -68,7 +68,7 @@ def post_login(req):
   # If user is found and the password is valid, store in session, and redirect to the homepage
   # Otherwise, redirect back to the login page with a flash message
   # Note: passwords should be hashed and encrypted in actual production solutions!
-  if user is not None and user[1] == password: #DO I NEED TO MAKE PASSWORD CAPITAL P??
+  if user is not None and user[1] == password: 
     req.session['user'] = user[0] # set the session variable
     return HTTPFound(req.route_url("get_home"))
   else:
