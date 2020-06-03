@@ -342,7 +342,10 @@ def metrics(req):
   return render_to_response('templates/metrics.html', {}, request =req)
 
 def visitor_analytics(req):
-  return render_to_response('templates/visitor_analytics.html', {}, request =req)
+  if 'user' in req.session: # logged in
+    return render_to_response('templates/visitor_analytics.html',{'user':req.session['user']})
+  else: # not logged in
+    return HTTPFound(req.route_url("login"))
 
 
 
