@@ -315,12 +315,12 @@ def valid_user(req):
   return validity
 
 # Route to validate login credentials...
-def post_login(req):
+#def post_login(req):
   #if valid_user(req) and correct_password(req):
     #return menuportal(req)#controller(req)#
   #else:
     #return render_to_response('templates/login.html', {'tag': 'Incorrect Password'}, request = req)
-  return render_to_response('templates/portal.html', {}, request =req)
+  #return render_to_response('templates/portal.html', {}, request =req)
 
 # These currently just render the html files 
 def sign_up(req):
