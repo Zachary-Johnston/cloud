@@ -341,6 +341,9 @@ def features(req):
 def metrics(req):
   return render_to_response('templates/metrics.html', {}, request =req)
 
+def visitor_analytics(req):
+  return render_to_response('templates/visitor_analytics.html', {}, request =req)
+
 
 
 
@@ -443,7 +446,8 @@ if __name__ == '__main__':
   
   
   
-  
+  config.add_route('visitor_analytics', '/visitor_analytics') # Added route for metrics rendering
+  config.add_view(visitor_analytics, route_name='visitor_analytics')
  
   config.add_route('post_login', '/post_login')
   config.add_view(post_login, route_name='post_login', request_method = "POST")
