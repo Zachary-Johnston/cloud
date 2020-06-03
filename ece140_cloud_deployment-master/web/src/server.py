@@ -201,7 +201,7 @@ def get_ready(req):
 def add_new_user(req):
   # Get all the data that is going to be sent (needs to be a dict like "data")
   # print(req.params) #debugging
-  data = {"Username": req.params['Username'], "Password":  req.params['Password']}
+  data = {"Email": req.params['Email'], "Password":  req.params['Password']}
   #New_user = requests.post(REST_SERVER + '/new_users', data=data).json()
   New_user = requests.post('https://64.225.127.211:6001/new_users', data=data).json()
   return render_to_response('templates/portal.html', {}, request=req)
@@ -213,20 +213,20 @@ def add_users_db(req):
   # Get rid of the [] that comes from req
   newPsw = newPsw[2:len(newPsw)-2]
   # Get the name the user entered
-  newName = str(req.params.getall("Username"))
+  newName = str(req.params.getall("Email"))
   # Get rid of the [] that comes from req
   newName = newName[2:len(newName)-2]
   # Connect to the database
   db = mysql.connect(user=db_user, password=db_pass, host=db_host, database=db_name)
   cursor = db.cursor()
   # Insert Records
-  query = "insert into Users (Username, Password, Status) values (%s, %s, %s)"
+  query = "insert into Users (Email, Password, Status) values (%s, %s, %s)"
   values = [
   (newName,newPsw,'Pending'),
   ]
   cursor.executemany(query, values)
   db.commit()
-  cursor.execute("SELECT Username, Password, Status from Users;")
+  cursor.execute("SELECT Email, Password, Status from Users;")
   records = cursor.fetchall()
   json.dumps(records) #take this out?
   return render_to_response('templates/portal.html', {}, request =req)
@@ -251,14 +251,14 @@ def changestatus(req):
 
 # Compare credentials from request (from user) to json
 def correct_password(req):
-  data = {"Username": req.params['Username'], "Password":  req.params['Password']}
+  data = {"Email": req.params['Email'], "Password":  req.params['Password']}
   #validity = requests.post(REST_SERVER + '/check_password', data = data).json()
   validity = requests.post('https://64.225.127.211:6001/check_password', data = data).json()
   return validity
 
 def valid_user(req):
   try:
-    data = {"Username": req.params['Username']}
+    data = {"Email": req.params['Email']}
   except:
     data = req
   #validity = requests.post(REST_SERVER + '/check_validity', data = data).json()
@@ -320,16 +320,16 @@ def admin(req):
 def tracker(req):
   #moves = requests.get(REST_SERVER + "/requested_moves").json()
   moves = requests.get("https://64.225.127.211:6001/requested_moves").json()
-  return render_to_response('templates/tracker.html', {'Username': req.params['Username'], 'moves': moves}, request =req)
+  return render_to_response('templates/tracker.html', {'Email': req.params['Email'], 'moves': moves}, request =req)
  
 def controller(req):
-  return render_to_response('templates/controller.html', {'Username': req.params['Username']}, request =req)
+  return render_to_response('templates/controller.html', {'Email': req.params['Email']}, request =req)
 
 def menuportal(req):
-  return render_to_response('templates/menuportal.html', {'Username': req.params['Username']}, request =req)
+  return render_to_response('templates/menuportal.html', {'Email': req.params['Email']}, request =req)
 
 def post_menu(req):
-  data = {"nextLocation":  req.params['input'], "Username": req.params['Username']}
+  data = {"nextLocation":  req.params['input'], "Email": req.params['Email']}
   if valid_user(data):
     if data['nextLocation'] == 'Tracker':
       return tracker(req)
