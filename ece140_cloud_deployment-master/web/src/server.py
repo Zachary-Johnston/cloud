@@ -45,6 +45,7 @@ def login(req):
 # Route to retrieve the LOGGED-IN homepage
 def get_home(req):
   if 'user' in req.session: # logged in
+    print(req.session['user']) #DEBUGGGGGGGGGGGGGGGG
     return render_to_response('templates/portal.html',{'user':req.session['user']})
   else: # not logged in
     return HTTPFound(req.route_url("login"))
