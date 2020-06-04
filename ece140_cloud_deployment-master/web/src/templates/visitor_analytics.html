@@ -182,21 +182,19 @@ document.getElementById("Polar").onclick = function() {
     .then((response) =>{    
         console.log("Response Received")
 
-        var firstUpdate = response["record"][0];
-        var secondUpdate = response["record"][1];
-        newsTitle = firstUpdate[1];
-        document.getElementById("theTitle").innerHTML = newsTitle;
-        newsDate = firstUpdate[2];
-        document.getElementById("theDate").innerHTML = newsDate;
-        newsDescription = firstUpdate[3];
-        document.getElementById("theDescription").innerHTML = newsDescription;
-       
-        newsTitleAgain = secondUpdate[1];
-        document.getElementById("theTitleAgain").innerHTML = newsTitleAgain;
-        newsDateAgain = secondUpdate[2];
-        document.getElementById("theDateAgain").innerHTML = newsDateAgain;
-        newsDescriptionAgain = secondUpdate[3];
-        document.getElementById("theDescriptionAgain").innerHTML = newsDescriptionAgain;
+
+        document.getElementById("anonymousHome").innerHTML = response["records"][0];
+        document.getElementById("loggedHome").innerHTML = response["records"][1];
+        document.getElementById("anonymousAbout").innerHTML = response["records"][2];
+        document.getElementById("loggedAbout").innerHTML = response["records"][3];
+        document.getElementById("anonymousFeatures").innerHTML = response["records"][4];
+        document.getElementById("loggedFeatures").innerHTML = response["records"][5];
+        document.getElementById("anonymousPricing").innerHTML = response["records"][6];
+        document.getElementById("loggedPricing").innerHTML = response["records"][7];
+        document.getElementById("anonymousSignUp").innerHTML = response["records"][8];
+        document.getElementById("loggedSignUp").innerHTML = response["records"][9];
+        document.getElementById("anonymousMetrics").innerHTML = response["records"][10];
+        document.getElementById("loggedMetrics").innerHTML = response["records"][11];
     })
 
     .catch((error)=>{
