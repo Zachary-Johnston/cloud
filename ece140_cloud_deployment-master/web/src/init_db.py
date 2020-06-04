@@ -22,6 +22,34 @@ cursor.execute("drop table if exists newsupdates;")
 # # CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!! CAUTION!!!
 cursor.execute("drop table if exists ready;")
 
+cursor.execute("drop table if exists visits;")
+
+
+# CREATED VISITS TABLE
+try:
+  cursor.execute("""
+    CREATE TABLE visits (
+      id integer  AUTO_INCREMENT PRIMARY KEY,
+      session_id  VARCHAR(50) NOT NULL,
+      route_name   VARCHAR(50) NOT NULL,
+      timestamp       VARCHAR(50) NOT NULL
+    );
+  """)
+except:
+  print("Table already exists. Not recreating it.")
+
+# Insert Records into visits
+query = "insert into visits (session_id, route_name, timestamp) values (%s, %s, %s)"
+values = [
+  ('session id of user visiting the route','name of route','timestamp'),
+]
+cursor.executemany(query, values)
+db.commit()
+
+
+
+
+
 # CREATED USERS TABLE
 try:
   cursor.execute("""
