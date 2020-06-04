@@ -180,7 +180,13 @@ def coffeeset(req):
 
 
 def setcoffee(req):
-  return render_to_response('templates/setter.html', {'username': req.params['username']}, request =req)
+  if 'user' in req.session: # logged in
+    return render_to_response('templates/setter.html',{'user':req.session['user']})
+  else: # not logged in
+    return HTTPFound(req.route_url("login"))
+  
+  
+  #return render_to_response('templates/setter.html', {'username': req.params['username']}, request =req)
 
 
 
