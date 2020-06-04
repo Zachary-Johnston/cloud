@@ -557,9 +557,6 @@ if __name__ == '__main__':
   config.add_route('post_login', '/post_login')
   config.add_view(post_login, route_name='post_login', request_method = "POST")
   
-  config.add_route('tracker', '/tracker') # Added route for tracker 
-  config.add_view(tracker, route_name='tracker')
-  
   config.add_route('menuportal', '/menuportal') # Added route for menuportal
   config.add_view(menuportal, route_name='menuportal')
 
