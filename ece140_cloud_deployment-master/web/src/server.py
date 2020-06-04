@@ -45,7 +45,6 @@ def login(req):
 # Route to retrieve the LOGGED-IN homepage
 def get_home(req):
   if 'user' in req.session: # logged in
-    print(req.session['user']) #DEBUGGGGGGGGGGGGGGGG
     return render_to_response('templates/portal.html',{'user':req.session['user']})
   else: # not logged in
     return HTTPFound(req.route_url("login"))
@@ -327,8 +326,55 @@ def valid_user(req):
 def sign_up(req):
   return render_to_response('templates/sign_up.html', {}, request =req)
 
+
+
+
+
+
+
+
+
+
 def about(req):
-  return render_to_response('templates/about.html', {}, request =req)
+  session_id = req.session['user']
+  start = time.time()
+  if 'user' in req.session: # logged in
+    # Connect to the database
+    db = mysql.connect(user=db_user, password=db_pass, host=db_host, database=db_name)
+    cursor = db.cursor()
+    # Insert Records
+    query = "insert into visits (session_id, route_name, timestamp) values (%s, %s, %s)"
+    values = [
+    (session_id,'About',start),
+    ]
+    cursor.executemany(query, values)
+    db.commit() 
+    return render_to_response('templates/about.html',{'user':req.session['user']})
+  else: # not logged in
+    # Connect to the database
+    db = mysql.connect(user=db_user, password=db_pass, host=db_host, database=db_name)
+    cursor = db.cursor()
+    # Insert Records
+    query = "insert into visits (session_id, route_name, timestamp) values (%s, %s, %s)"
+    values = [
+    ('No user logged in.','About',start),
+    ]
+    cursor.executemany(query, values)
+    db.commit()
+    return render_to_response('templates/about.html', {}, request =req)
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
 def pricing(req):
   return render_to_response('templates/pricing.html', {}, request =req)
@@ -450,7 +496,7 @@ if __name__ == '__main__':
   
   
   
-  config.add_route('visitor_analytics', '/visitor_analytics') # Added route for metrics rendering
+  config.add_route('visitor_analytics', '/admin') # Added route for analytics rendering
   config.add_view(visitor_analytics, route_name='visitor_analytics')
  
   config.add_route('post_login', '/post_login')
