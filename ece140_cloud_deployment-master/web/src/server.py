@@ -222,7 +222,33 @@ def get_news(req):
 ############################################
 
 def portal(req):
-  return render_to_response('templates/portal.html', {}, request =req)
+  start = time.time()
+  session_id = {}
+  if 'user' in req.session: # logged in
+    # Connect to the database
+    session_id = req.session['user']
+    db = mysql.connect(user=db_user, password=db_pass, host=db_host, database=db_name)
+    cursor = db.cursor()
+    # Insert Records
+    query = "insert into visits (session_id, route_name, timestamp) values (%s, %s, %s)"
+    values = [
+    (session_id,'Home',start),
+    ]
+    cursor.executemany(query, values)
+    db.commit() 
+    return render_to_response('templates/portal.html',{'user':req.session['user']})
+  else: # not logged in
+    # Connect to the database
+    db = mysql.connect(user=db_user, password=db_pass, host=db_host, database=db_name)
+    cursor = db.cursor()
+    # Insert Records
+    query = "insert into visits (session_id, route_name, timestamp) values (%s, %s, %s)"
+    values = [
+    ('No user logged in.','Home',start),
+    ]
+    cursor.executemany(query, values)
+    db.commit()
+    return render_to_response('templates/portal.html', {}, request =req)
 
 ############################################
 
@@ -280,24 +306,6 @@ def add_users_db(req):
   json.dumps(records) #take this out?
   return render_to_response('templates/portal.html', {}, request =req)
 
-# This function will become useless
-def changestatus(req):
-  # Get all the data that is going to be sent (needs to be a dict like "data")
-  # current does not run since all info is being sent to the Rest server
-  print("1 *****************************************************")
-  print(req.json_body)
-  info_to_send = req.json_body
-  print("2 *****************************************************")
-  print(info_to_send)
-
- # data = {"Username": info_to_send['Username'],
-  #        "Status": info_to_send['Status']}
-  #newstatus = requests.post(REST_SERVER + '/change_status', data = data).json()
-  return render_to_response('templates/did_log_in.html', {}, request =req)
-  #return True
-
-
-
 # Compare credentials from request (from user) to json
 def correct_password(req):
   data = {"Email": req.params['Email'], "Password":  req.params['Password']}
@@ -314,17 +322,35 @@ def valid_user(req):
   validity = requests.post('https://polarcoffee.org:6001/check_validity', data = data).json()
   return validity
 
-# Route to validate login credentials...
-#def post_login(req):
-  #if valid_user(req) and correct_password(req):
-    #return menuportal(req)#controller(req)#
-  #else:
-    #return render_to_response('templates/login.html', {'tag': 'Incorrect Password'}, request = req)
-  #return render_to_response('templates/portal.html', {}, request =req)
-
 # These currently just render the html files 
 def sign_up(req):
-  return render_to_response('templates/sign_up.html', {}, request =req)
+  start = time.time()
+  session_id = {}
+  if 'user' in req.session: # logged in
+    # Connect to the database
+    session_id = req.session['user']
+    db = mysql.connect(user=db_user, password=db_pass, host=db_host, database=db_name)
+    cursor = db.cursor()
+    # Insert Records
+    query = "insert into visits (session_id, route_name, timestamp) values (%s, %s, %s)"
+    values = [
+    (session_id,'Sign Up',start),
+    ]
+    cursor.executemany(query, values)
+    db.commit() 
+    return render_to_response('templates/sign_up.html',{'user':req.session['user']})
+  else: # not logged in
+    # Connect to the database
+    db = mysql.connect(user=db_user, password=db_pass, host=db_host, database=db_name)
+    cursor = db.cursor()
+    # Insert Records
+    query = "insert into visits (session_id, route_name, timestamp) values (%s, %s, %s)"
+    values = [
+    ('No user logged in.','Sign Up',start),
+    ]
+    cursor.executemany(query, values)
+    db.commit()
+    return render_to_response('templates/sign_up.html', {}, request =req)
 
 
 
@@ -378,16 +404,91 @@ def about(req):
   
 
 def pricing(req):
-  return render_to_response('templates/pricing.html', {}, request =req)
+  start = time.time()
+  session_id = {}
+  if 'user' in req.session: # logged in
+    # Connect to the database
+    session_id = req.session['user']
+    db = mysql.connect(user=db_user, password=db_pass, host=db_host, database=db_name)
+    cursor = db.cursor()
+    # Insert Records
+    query = "insert into visits (session_id, route_name, timestamp) values (%s, %s, %s)"
+    values = [
+    (session_id,'Pricing',start),
+    ]
+    cursor.executemany(query, values)
+    db.commit() 
+    return render_to_response('templates/pricing.html',{'user':req.session['user']})
+  else: # not logged in
+    # Connect to the database
+    db = mysql.connect(user=db_user, password=db_pass, host=db_host, database=db_name)
+    cursor = db.cursor()
+    # Insert Records
+    query = "insert into visits (session_id, route_name, timestamp) values (%s, %s, %s)"
+    values = [
+    ('No user logged in.','Pricing',start),
+    ]
+    cursor.executemany(query, values)
+    db.commit()
+    return render_to_response('templates/pricing.html', {}, request =req)
 
 def features(req):
-  return render_to_response('templates/features.html', {}, request =req)
- 
-#def login(req):
-  #return render_to_response('templates/login.html', {}, request =req)
+  start = time.time()
+  session_id = {}
+  if 'user' in req.session: # logged in
+    # Connect to the database
+    session_id = req.session['user']
+    db = mysql.connect(user=db_user, password=db_pass, host=db_host, database=db_name)
+    cursor = db.cursor()
+    # Insert Records
+    query = "insert into visits (session_id, route_name, timestamp) values (%s, %s, %s)"
+    values = [
+    (session_id,'Features',start),
+    ]
+    cursor.executemany(query, values)
+    db.commit() 
+    return render_to_response('templates/features.html',{'user':req.session['user']})
+  else: # not logged in
+    # Connect to the database
+    db = mysql.connect(user=db_user, password=db_pass, host=db_host, database=db_name)
+    cursor = db.cursor()
+    # Insert Records
+    query = "insert into visits (session_id, route_name, timestamp) values (%s, %s, %s)"
+    values = [
+    ('No user logged in.','Features',start),
+    ]
+    cursor.executemany(query, values)
+    db.commit()
+    return render_to_response('templates/features.html', {}, request =req)
 
 def metrics(req):
-  return render_to_response('templates/metrics.html', {}, request =req)
+  start = time.time()
+  session_id = {}
+  if 'user' in req.session: # logged in
+    # Connect to the database
+    session_id = req.session['user']
+    db = mysql.connect(user=db_user, password=db_pass, host=db_host, database=db_name)
+    cursor = db.cursor()
+    # Insert Records
+    query = "insert into visits (session_id, route_name, timestamp) values (%s, %s, %s)"
+    values = [
+    (session_id,'Metrics',start),
+    ]
+    cursor.executemany(query, values)
+    db.commit() 
+    return render_to_response('templates/metrics.html',{'user':req.session['user']})
+  else: # not logged in
+    # Connect to the database
+    db = mysql.connect(user=db_user, password=db_pass, host=db_host, database=db_name)
+    cursor = db.cursor()
+    # Insert Records
+    query = "insert into visits (session_id, route_name, timestamp) values (%s, %s, %s)"
+    values = [
+    ('No user logged in.','Metrics',start),
+    ]
+    cursor.executemany(query, values)
+    db.commit()
+    return render_to_response('templates/metrics.html', {}, request =req)
 
 def visitor_analytics(req):
   if 'user' in req.session: # logged in
@@ -410,41 +511,6 @@ def timer(req):
   return render_to_response('templates/timer.html', {}, request =req)
 
 
-
-
-
-
-
-
-def admin(req):
-  #Users = requests.get(REST_SERVER + "/users").json()
-  Users = requests.get("https://polarcoffee.org:6001/users").json()
-  return render_to_response('templates/adminportal.html',{'users': Users}, request =req)
-
-def tracker(req):
-  #moves = requests.get(REST_SERVER + "/requested_moves").json()
-  moves = requests.get("https://polarcoffee.org:6001/requested_moves").json()
-  return render_to_response('templates/tracker.html', {'Email': req.params['Email'], 'moves': moves}, request =req)
- 
-def controller(req):
-  return render_to_response('templates/controller.html', {'Email': req.params['Email']}, request =req)
-
-def menuportal(req):
-  return render_to_response('templates/portal.html', {'Email': req.params['Email']}, request =req)
-
-def post_menu(req):
-  data = {"nextLocation":  req.params['input'], "Email": req.params['Email']}
-  if valid_user(data):
-    if data['nextLocation'] == 'Tracker':
-      return tracker(req)
-    if data['nextLocation'] == 'Controller':
-      return controller(req)
-    if data['nextLocation'] == 'admin':
-      return admin(req)
-    if data['nextLocation'] == 'about':
-      return about(req)
-
-  return render_to_response('templates/did_log_in.html', {}, request =req)
 
 ''' Route Configurations '''
 if __name__ == '__main__':
@@ -489,14 +555,6 @@ if __name__ == '__main__':
   config.add_route('get_home', '/home')
   config.add_view(get_home, route_name='get_home')
   
-  
-  
-  
-  
-  
-  
-  
-  
   config.add_route('visitor_analytics', '/admin') # Added route for analytics rendering
   config.add_view(visitor_analytics, route_name='visitor_analytics')
  
@@ -523,12 +581,7 @@ if __name__ == '__main__':
   
   config.add_route('metrics', '/metrics') # Added route for metrics rendering
   config.add_view(metrics, route_name='metrics')
-  
-  
-  
-  
-
-  
+    
   config.add_route('setter', '/setter') # Added route for setter
   config.add_view(setter, route_name='setter')
   
@@ -537,10 +590,6 @@ if __name__ == '__main__':
   
   config.add_route('coffeeset', '/coffeeset') # Added route for timer
   config.add_view(coffeeset, route_name='coffeeset')
-  
-  #config.add_route('setcoffeex', '/setcoffeex') # Added route for timer
-  #config.add_view(setcoffeex, route_name='setcoffeex')
-  
   
   
   
