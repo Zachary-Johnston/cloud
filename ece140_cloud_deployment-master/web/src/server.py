@@ -203,6 +203,64 @@ def get_members(req):
 
 ############################################
 
+
+def get_visit(req):
+  # Connect to the database and retrieve the visit info
+  db = mysql.connect(host=db_host, database=db_name, user=db_user, passwd=db_pass)
+  cursor = db.cursor()
+  cursor.execute("select count(id) from visits where route_name = 'Home' and session_id = 'No user logged in.'")
+  anonymousHome = cursor.fetchall()
+  cursor.execute("select count(id) from visits where route_name = 'Home' and session_id != 'No user logged in.'")
+  loggedHome = cursor.fetchall()
+  cursor.execute("select count(id) from visits where route_name = 'About' and session_id = 'No user logged in.'")
+  anonymousAbout = cursor.fetchall()
+  cursor.execute("select count(id) from visits where route_name = 'About' and session_id != 'No user logged in.'")
+  loggedAbout = cursor.fetchall()
+  cursor.execute("select count(id) from visits where route_name = 'Features' and session_id = 'No user logged in.'")
+  anonymousFeatures = cursor.fetchall()
+  cursor.execute("select count(id) from visits where route_name = 'Features' and session_id != 'No user logged in.'")
+  loggedFeatures = cursor.fetchall()
+  cursor.execute("select count(id) from visits where route_name = 'Pricing' and session_id = 'No user logged in.'")
+  anonymousPricing = cursor.fetchall()
+  cursor.execute("select count(id) from visits where route_name = 'Pricing' and session_id != 'No user logged in.'")
+  loggedPricing = cursor.fetchall()
+  cursor.execute("select count(id) from visits where route_name = 'Sign Up' and session_id = 'No user logged in.'")
+  anonymousSignUp = cursor.fetchall()
+  cursor.execute("select count(id) from visits where route_name = 'Sign Up' and session_id != 'No user logged in.'")
+  loggedSignUp = cursor.fetchall()
+  cursor.execute("select count(id) from visits where route_name = 'Metrics' and session_id = 'No user logged in.'")
+  anonymousMetrics = cursor.fetchall()
+  cursor.execute("select count(id) from visits where route_name = 'Metrics' and session_id != 'No user logged in.'")
+  loggedMetrics = cursor.fetchall()
+  db.close()
+  
+  value_to_return = {}
+  value_to_return['records'] = anonymousHome + loggedHome + anonymousAbout + loggedAbout + anonymousFeatures + loggedFeatures + anonymousPricing + loggedPricing + anonymousSignUp + loggedSignUp + anonymousMetrics + loggedMetrics
+  value_to_return = Response(body=json.dumps(value_to_return))
+  #records = records[1:len(records)-1]
+  print(records)
+  print(value_to_return)
+  value_to_return = Response(body=json.dumps(value_to_return))
+  print(value_to_return)
+  return value_to_return
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ############################################
 
 def get_news(req):
@@ -593,6 +651,10 @@ if __name__ == '__main__':
   config.add_view(get_news, route_name='get_news', renderer='json')
   
   ##################################
+  
+  
+  config.add_route('get_visit', '/get_visit')
+  config.add_view(get_visit, route_name='get_visit', renderer='json')
   
   ##################################
   
