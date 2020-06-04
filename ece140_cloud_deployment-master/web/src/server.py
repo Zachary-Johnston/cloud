@@ -526,10 +526,6 @@ if __name__ == '__main__':
   config.add_route('show_users', '/show_users')
   config.add_view(show_users, route_name='show_users')  
 
-  config.add_route('changestatus', '/change_status')
-  #config.add_view(changestatus, route_name='changestatus')
-  config.add_view(changestatus, route_name='changestatus', request_method = "POST")
-
   config.add_route('new_user', '/new_user')
   #For view users(quick debugging)
   #config.add_view(show_users, route_name='new_user')
