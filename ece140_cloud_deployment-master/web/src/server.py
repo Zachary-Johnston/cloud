@@ -336,10 +336,11 @@ def sign_up(req):
 
 
 def about(req):
-  session_id = req.session['user']
   start = time.time()
+  session_id = {}
   if 'user' in req.session: # logged in
     # Connect to the database
+    session_id = req.session['user']
     db = mysql.connect(user=db_user, password=db_pass, host=db_host, database=db_name)
     cursor = db.cursor()
     # Insert Records
