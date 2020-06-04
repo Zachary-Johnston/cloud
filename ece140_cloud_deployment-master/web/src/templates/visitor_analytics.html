@@ -8,6 +8,23 @@ body {
    background-attachment: fixed;
 }
 </style>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
    
    
         <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
@@ -83,29 +100,46 @@ document.getElementById("Polar").onclick = function() {
 </center><center> 
    
    
-            <p><table style="border-collapse: collapse; float:right; width:20%; margin: 15px 0 15px 15px; padding: 10px; cellspacing: 0px; background:#FFFFFF;">
-  <tr style="border:1px solid #888888; background:#cccccc; padding: 8px;">
-    <th style="text-align:center;">UPDATES</th> 
+<h2><span style="font-family: Helvetica; font-size: 2.0em; text-shadow: 1px 1px #000000; color: #ffffff; line-height: 1.3; text-transform: lowercase; font-weight: 300;">
+   --visitor analytics--</span></h2>
+
+<table>
+  <tr>
+    <th>Route</th>
+    <th>Anonymous Visitors</th>
+    <th>Logged in Visitors</th>
   </tr>
   <tr>
-    <td id="theDate" style="border:1px solid #888888; font-weight: bold; background:#FFFFFF;"><strong>database loading. try refreshing.</strong><br />database loading. try refreshing.</td>
+    <td>Home</td>
+    <td>{{anonymousHome}}</td>
+    <td>{{loggedHome}}</td>
   </tr>
   <tr>
-    <td id="theTitle" style="border:1px solid #888888; background:#eeeeee;"><strong>database loading. try refreshing.</strong><br />database loading. try refreshing.</td>
+    <td>About</td>
+    <td>{{anonymousAbout}}</td>
+    <td>{{loggedAbout}}</td>
   </tr>
   <tr>
-    <td id="theDescription" style="border:1px solid #888888; background:#FFFFFF;"><strong>database loading. try refreshing.</strong><br />database loading. try refreshing.</td>
-  </tr>
-     <tr>
-    <td id="theDateAgain" style="border:1px solid #888888; font-weight: bold; background:#FFFFFF;"><strong>database loading. try refreshing.</strong><br />database loading. try refreshing.</td>
-  </tr>
-  <tr>
-    <td id="theTitleAgain" style="border:1px solid #888888; background:#eeeeee;"><strong>database loading. try refreshing.</strong><br />database loading. try refreshing.</td>
+    <td>Features</td>
+    <td>{{anonymousFeatures}}</td>
+    <td>{{loggedFeatures}}</td>
   </tr>
   <tr>
-    <td id="theDescriptionAgain" style="border:1px solid #888888; background:#FFFFFF;"><strong>database loading. try refreshing.</strong><br />database loading. try refreshing.</td>
+    <td>Pricing</td>
+    <td>{{anonymousPricing}}</td>
+    <td>{{loggedPricing}}</td>
   </tr>
-</table></p>
+  <tr>
+    <td>Sign Up</td>
+    <td>{{anonymousSignUp}}</td>
+    <td>{{loggedSignUp}}</td>
+  </tr>
+  <tr>
+    <td>Metrics</td>
+    <td>{{anonymousMetrics}}</td>
+    <td>{{loggedMetrics}}</td>
+  </tr>
+</table>
    
       <script>
          function metrics(){
