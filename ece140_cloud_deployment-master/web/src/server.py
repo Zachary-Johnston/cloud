@@ -239,8 +239,6 @@ def get_visit(req):
   value_to_return = Response(body=json.dumps(value_to_return))
   #records = records[1:len(records)-1]
   print(value_to_return)
-  value_to_return = Response(body=json.dumps(value_to_return))
-  print(value_to_return)
   return value_to_return
 
 
