@@ -187,6 +187,15 @@ def setcoffee(req):
   
   
   #return render_to_response('templates/setter.html', {'username': req.params['username']}, request =req)
+  
+def setter(req):
+  if 'user' in req.session: # logged in
+    return render_to_response('templates/setter.html',{'user':req.session['user']})
+  else: # not logged in
+    return HTTPFound(req.route_url("login"))
+  
+  
+
 
 
 
@@ -565,8 +574,7 @@ def visitor_analytics(req):
 
 
 
-def setter(req):
-  return render_to_response('templates/setter.html', {}, request =req)
+
 
 def timer(req):
   return render_to_response('templates/timer.html', {}, request =req)
