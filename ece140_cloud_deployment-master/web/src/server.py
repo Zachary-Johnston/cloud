@@ -20,16 +20,42 @@ db_pass = os.environ['MYSQL_PASSWORD']
 db_name = os.environ['MYSQL_DATABASE']
 db_host = os.environ['MYSQL_HOST']
 
-# Show all the users in the database
-def show_users(req):
-  # "/users" comes from the route defined in rest_server.py
-  #Users = requests.get(REST_SERVER + "/users").json()
-  Users = requests.get('https://64.225.127.211:6001/users').json()
-  # The word "users" is a variable that is used in the show_users.html
-  return render_to_response('templates/show_users.html', {'users': Users}, request=req)
 
 
+## Authentication
+# Register an app with https://developer.spotify.com/dashboard/ and paste your Client ID and Client Secret on the line below
+token = util.oauth2.SpotifyClientCredentials(client_id='531bf1de1dc44e71bd4bb4f9c69af7a7', client_secret='0d6921a912534d15b5fed7e75b4f46b2')
+cache_token = token.get_access_token()
+spotify = spotipy.Spotify(cache_token)
 
+# Get the first 100 (max) songs in the playlist
+results = spotify.user_playlist_tracks('spotify:user:zack_johnston', 'spotify:playlist:soft', limit=100, offset=0)
+
+# Store results in a tracks array
+tracks = results['items']
+
+# Continue paginating through until all results are returned
+while results['next']:
+  results = spotify.next(results)
+  tracks.extend(results['items'])
+  # index
+  i = 0
+
+  # for each track in the playlist, gather more information and write to csv
+  for item in (tracks):
+   i = i + 1
+   track = item['track']
+
+   # if the track is a local file, skip it
+   if "local" in track['uri']:
+    continue
+
+   # Two more API calls to get more track-related information
+   audio_features = spotify.audio_features(track['uri'])[0]
+   release_date = spotify.track(track['uri'])['album']['release_date']
+
+   # print to console for debugging
+   print("   %d %32.32s %s %s" % (i, track['artists'][0]['name'], track['name'],release_date))
 
 
 
