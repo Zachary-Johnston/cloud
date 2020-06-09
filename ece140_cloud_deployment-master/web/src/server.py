@@ -36,24 +36,22 @@ results = spotify.user_playlist_tracks('spotify:user:zack_johnston', 'spotify:pl
 
 # Store results in a tracks array
 tracks = results['items']
+new_adds = []
+
 
 # Continue paginating through until all results are returned
 while results['next']:
   results = spotify.next(results)
   tracks.extend(results['items'])
-
-  #index
-  i = 0
-
-  # for each track in the playlist, gather more information and write to csv
   for item in (tracks):
-   i = i + 1
-   track = item['track']
+   new_adds.append(item['name'])
 
-   # print to console for debugging
-   print(json.dumps(track['artists'][0]['name']))
-   print(json.dumps(track['artists']))
-   print(json.dumps(track['artists']['name']))
+print(json.dumps(new_adds))
+print(json.dumps(new_adds['artists'][0]['name']))
+
+#print(json.dumps(track['artists'][0]['name']))
+#print(json.dumps(track['artists']))
+#print(json.dumps(track['artists']['name']))
 
 
 
