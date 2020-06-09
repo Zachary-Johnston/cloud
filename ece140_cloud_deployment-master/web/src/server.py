@@ -34,8 +34,6 @@ spotify = spotipy.Spotify(cache_token)
 # Get the first 100 (max) songs in the playlist
 results = spotify.user_playlist_tracks('spotify:user:zack_johnston', 'spotify:playlist:6dosGTCTRJ5xtA3XM6YTZb', limit=100, offset=0)
 
-
-
 # Store results in a tracks array
 tracks = results['items']
 
@@ -60,8 +58,9 @@ while results['next']:
    release_date = spotify.track(track['uri'])['album']['release_date']
 
    # print to console for debugging
-   print(json.dumps("%d %s %s %s" % (i, track['artists'][0]['name'], track['name'], release_date)))
-
+   print(json.dumps(track['artists'][0]['name']))
+   print(json.dumps(track['name']))
+   print(json.dumps(release_date))
 
 
 
