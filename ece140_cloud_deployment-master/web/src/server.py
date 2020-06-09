@@ -34,7 +34,7 @@ spotify = spotipy.Spotify(cache_token)
 # Get the first 100 (max) songs in the playlist
 results = spotify.user_playlist_tracks('spotify:user:zack_johnston', 'spotify:playlist:37i9dQZEVXbJiZcmkrIHGU', limit=100, offset=0)
 results2 = spotify.user_playlist_tracks('spotify:user:zack_johnston', 'spotifycharts:playlist:37i9dQZEVXbJiZcmkrIHGU', limit=100, offset=0)
-results3 = spotify.playlist('spotify:user:zack_johnston', 'spotifycharts:playlist:37i9dQZEVXbJiZcmkrIHGU', limit=100, offset=0)
+results3 = spotify.user_playlist_tracks('spotify:user:zack_johnston', 'spotifycharts:playlist:37i9dQZEVXbJiZcmkrIHGU', limit=100, offset=0)
 
 print(json.dumps(results, indent=4))
 print(json.dumps(results2, indent=4))
