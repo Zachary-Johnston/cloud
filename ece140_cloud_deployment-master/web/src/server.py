@@ -2,6 +2,7 @@ from wsgiref.simple_server import make_server
 from pyramid.config import Configurator
 from pyramid.renderers import render_to_response
 from pyramid.response import Response
+from spotipy import Spotify
 
 from pyramid.httpexceptions import HTTPFound            # Perform redirects from the backend to other routes
 # NOTE: this is unencrypted but signed session stored in client cookies. It isn't the most secure, but at least it's baked into Pyramid. Shame on Pyramid!
@@ -13,6 +14,8 @@ import json
 import os
 import time
 import paho.mqtt.client as mqtt
+import spotipy
+import spotipy.util as util
 
 
 db_user = os.environ['MYSQL_USER']
