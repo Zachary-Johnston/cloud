@@ -60,7 +60,7 @@ while results['next']:
    release_date = spotify.track(track['uri'])['album']['release_date']
 
    # print to console for debugging
-   print("%d %32.32s %s %s" % (i, track['artists'][0]['name'], track['name'],release_date))
+   print("%d %s %s %s" % (i, track['artists'][0]['name'], track['name'], release_date))
 
 
 
