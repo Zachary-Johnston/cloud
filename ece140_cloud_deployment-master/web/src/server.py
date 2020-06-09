@@ -51,8 +51,9 @@ while results['next']:
    i = i + 1
    track = item['track']
    # print to console for debugging
-   print(json.dumps(track['artists'][0]['name']))
-
+   #print(json.dumps(track['artists'][0]['name']))
+   print(json.dumps(track['name']))
+   print(json.dumps(release_date))
 
 
 
