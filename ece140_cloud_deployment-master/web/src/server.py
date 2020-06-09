@@ -49,12 +49,11 @@ while results['next']:
   for item in (tracks):
    i = i + 1
    track = item['track']
-   release_date = spotify.track(track['uri'])['album']['release_date']
+
    # print to console for debugging
    print(json.dumps(track['artists'][0]['name']))
-   print(json.dumps(track['name']))
-   print(json.dumps(release_date))
-
+   print(json.dumps(track['artists']))
+   print(json.dumps(track['artists']['name']))
 
 
 
