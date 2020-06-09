@@ -43,11 +43,10 @@ new_adds = []
 while results['next']:
   results = spotify.next(results)
   tracks.extend(results['items'])
-  for item in (tracks):
+  for items in (tracks):
    new_adds.append(item['name'])
 
 print(json.dumps(new_adds))
-print(json.dumps(new_adds['artists'][0]['name']))
 
 #print(json.dumps(track['artists'][0]['name']))
 #print(json.dumps(track['artists']))
