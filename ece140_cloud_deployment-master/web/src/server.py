@@ -32,11 +32,13 @@ cache_token = token.get_access_token()
 spotify = spotipy.Spotify(cache_token)
 
 # Get the first 100 (max) songs in the playlist
-results = spotify.user_playlist_tracks('spotify:user:zack_johnston', 'spotify:playlist:6dosGTCTRJ5xtA3XM6YTZb', limit=100, offset=0)
+results = spotify.user_playlist_tracks('spotify:user:zack_johnston', 'spotify:playlist:6dosGTCTRJ5xtA3XM6YTZb', limit=5, offset=0)
 
 # Store results in a tracks array
 tracks = results['items']
 
+print(json.dumps(results))
+print(json.dumps(tracks))
 # Continue paginating through until all results are returned
 while results['next']:
   results = spotify.next(results)
@@ -48,19 +50,9 @@ while results['next']:
   for item in (tracks):
    i = i + 1
    track = item['track']
-
-   # if the track is a local file, skip it
-   if "local" in track['uri']:
-    continue
-
-   # Two more API calls to get more track-related information
-   audio_features = spotify.audio_features(track['uri'])[0]
-   release_date = spotify.track(track['uri'])['album']['release_date']
-
    # print to console for debugging
    print(json.dumps(track['artists'][0]['name']))
-   print(json.dumps(track['name']))
-   print(json.dumps(release_date))
+
 
 
 
