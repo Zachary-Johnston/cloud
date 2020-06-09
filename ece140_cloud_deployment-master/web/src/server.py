@@ -32,7 +32,7 @@ cache_token = token.get_access_token()
 spotify = spotipy.Spotify(cache_token)
 
 # Get the first 100 (max) songs in the playlist
-results = spotify.user_playlist_tracks('spotify:user:zack_johnston', 'spotify:playlist:6dosGTCTRJ5xtA3XM6YTZb', limit=5, offset=0)
+results = spotify.user_playlist_tracks('spotify:user:zack_johnston', 'spotify:playlist:6dosGTCTRJ5xtA3XM6YTZb', limit=100, offset=39)
 
 # Store results in a tracks array
 tracks = results['items']
@@ -52,6 +52,7 @@ while results['next']:
    track = item['track']
    # print to console for debugging
    print(json.dumps(track['artists'][0]['name']))
+   print(json.dumps(track['added_at'][0]))
 
 
 
