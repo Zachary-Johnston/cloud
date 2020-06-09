@@ -52,7 +52,6 @@ while results['next']:
    track = item['track']
    # print to console for debugging
    print(json.dumps(track['artists'][0]['name']))
-   print(json.dumps(track['added_at'][0]))
 
 
 
