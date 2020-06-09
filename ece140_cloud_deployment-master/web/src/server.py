@@ -626,8 +626,6 @@ if __name__ == '__main__':
   # Loading stuff from the server
   config.add_view(portal, route_name='v2') #change to controller
 
-  config.add_route('show_users', '/show_users')
-  config.add_view(show_users, route_name='show_users')  
 
   config.add_route('new_user', '/new_user')
   #For view users(quick debugging)
