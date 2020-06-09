@@ -37,8 +37,6 @@ results = spotify.user_playlist_tracks('spotify:user:zack_johnston', 'spotify:pl
 # Store results in a tracks array
 tracks = results['items']
 
-print(json.dumps(results))
-
 # Continue paginating through until all results are returned
 while results['next']:
   results = spotify.next(results)
@@ -51,12 +49,9 @@ while results['next']:
    i = i + 1
    track = item['track']
    # print to console for debugging
-   #print(json.dumps(track['artists'][0]['name']))
-   #print(json.dumps(track['name']))
-   #print(json.dumps(release_date))
-print(json.dumps(track['artists'][0]['name']))
-print(json.dumps(track['name']))
-print(json.dumps(release_date))
+   print(json.dumps(track['artists'][0]['name']))
+   print(json.dumps(track['name']))
+   print(json.dumps(release_date))
 
 
 
