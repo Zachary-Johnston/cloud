@@ -33,37 +33,34 @@ spotify = spotipy.Spotify(cache_token)
 
 # Get the first 100 (max) songs in the playlist
 results = spotify.user_playlist_tracks('spotify:user:zack_johnston', 'spotify:playlist:37i9dQZEVXbJiZcmkrIHGU', limit=100, offset=0)
-results2 = spotify.user_playlist_tracks('spotify:user:zack_johnston', 'spotifycharts:playlist:37i9dQZEVXbJiZcmkrIHGU', limit=100, offset=0)
-results3 = spotify.user_playlist_tracks('spotify:user:zack_johnston', 'spotifycharts:playlist:37i9dQZEVXbJiZcmkrIHGU', limit=100, offset=0)
 
 print(json.dumps(results, indent=4))
-print(json.dumps(results2, indent=4))
-print(json.dumps(results3, indent=4))
+
 # Store results in a tracks array
-tracks = results['items']
+#tracks = results['items']
 
 # Continue paginating through until all results are returned
-while results['next']:
-  results = spotify.next(results)
-  tracks.extend(results['items'])
+#while results['next']:
+  #results = spotify.next(results)
+  #tracks.extend(results['items'])
   # index
-  i = 0
+  #i = 0
 
   # for each track in the playlist, gather more information and write to csv
-  for item in (tracks):
-   i = i + 1
-   track = item['track']
+  #for item in (tracks):
+   #i = i + 1
+   #track = item['track']
 
    # if the track is a local file, skip it
-   if "local" in track['uri']:
-    continue
+   #if "local" in track['uri']:
+    #continue
 
    # Two more API calls to get more track-related information
-   audio_features = spotify.audio_features(track['uri'])[0]
-   release_date = spotify.track(track['uri'])['album']['release_date']
+   #audio_features = spotify.audio_features(track['uri'])[0]
+   #release_date = spotify.track(track['uri'])['album']['release_date']
 
    # print to console for debugging
-   print("   %d %32.32s %s %s" % (i, track['artists'][0]['name'], track['name'],release_date))
+   #print("   %d %32.32s %s %s" % (i, track['artists'][0]['name'], track['name'],release_date))
 
 
 
