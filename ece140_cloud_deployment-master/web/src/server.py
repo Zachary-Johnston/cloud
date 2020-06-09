@@ -41,6 +41,7 @@ tracks = results['items']
 while results['next']:
   results = spotify.next(results)
   tracks.extend(results['items'])
+  release_date = spotify.track(track['uri'])['album']['release_date']
   #index
   i = 0
 
