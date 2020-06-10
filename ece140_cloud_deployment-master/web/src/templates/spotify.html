@@ -96,8 +96,6 @@ border-radius: 5px;
         console.log("Response Received")
         console.log(response)
         console.log(response["items"][0]["added_at"])
-        console.log(response[songs])
-        console.log(reponse["songs"])
         document.getElementById("playlistInfo").innerHTML = response["items"][0]["track"]["album"]["name"];
     })
 
