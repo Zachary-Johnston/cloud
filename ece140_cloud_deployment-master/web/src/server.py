@@ -41,8 +41,7 @@ def get_playlists(req):
   
   
   
-  
-  
+  scope = 'user-library-read'
   if len(sys.argv) > 1:
     username = sys.argv[1]
   else:
