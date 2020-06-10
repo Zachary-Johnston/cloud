@@ -44,11 +44,21 @@ def get_playlists(req):
   tracks = results['items']
   playlist_length = len(tracks)
   songs = []
+  artists = []
+  date_added = []
   
   for x in range(0, playlist_length):
     songs.append(results['items'][x]['track']['name'])
+    
+  for i in range(0, playlist_length):
+    artists.append(results['items'][i]['track']['artists'][0]['name'])
+    
+  for j in range(0, playlist_length):
+    date_added.append(results['items'][j]['added_at'])
 
   print(songs)
+  print(artists)
+  print(date_added)
   #print(json.dumps(results))
   #new_adds = []
   records = {}
@@ -56,7 +66,7 @@ def get_playlists(req):
   #songs = Response(body=json.dumps(songs))
   records.headers.update({'Access-Control-Allow-Origin': '*',})
   #songs.headers.update({'Access-Control-Allow-Origin': '*',})
-  return records#,songs
+  return records, songs, artists, date_added
 
 
   # Continue paginating through until all results are returned
