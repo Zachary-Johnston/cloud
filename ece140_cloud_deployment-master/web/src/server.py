@@ -25,36 +25,43 @@ db_host = os.environ['MYSQL_HOST']
 
 
 
-## Authentication
-# Register an app with https://developer.spotify.com/dashboard/ and paste your Client ID and Client Secret on the line below
-token = util.oauth2.SpotifyClientCredentials(client_id='531bf1de1dc44e71bd4bb4f9c69af7a7', client_secret='0d6921a912534d15b5fed7e75b4f46b2')
-cache_token = token.get_access_token()
-spotify = spotipy.Spotify(cache_token)
-
-# Get the first 100 (max) songs in the playlist
-results = spotify.user_playlist_tracks('spotify:user:zack_johnston', 'spotify:playlist:6dosGTCTRJ5xtA3XM6YTZb', limit=100, offset=0)
-
-# Store results in a tracks array
-tracks = results['items']
-#print(json.dumps(results))
-print(json.dumps(results[1]))
-#new_adds = []
 
 
-# Continue paginating through until all results are returned
-#while results['next']:
-  #results = spotify.next(results)
-  #tracks.extend(results['items'])
-  #for items in (tracks):
-   #new_adds.append(item['name'])
+def spotify(req):
+  return render_to_response('templates/spotify.html', {}, request =req)
 
-#print(json.dumps(new_adds))
+def get_playlists(req):
+    ## Authentication
+  # Register an app with https://developer.spotify.com/dashboard/ and paste your Client ID and Client Secret on the line below
+  token = util.oauth2.SpotifyClientCredentials(client_id='531bf1de1dc44e71bd4bb4f9c69af7a7', client_secret='0d6921a912534d15b5fed7e75b4f46b2')
+  cache_token = token.get_access_token()
+  spotify = spotipy.Spotify(cache_token)
 
-#print(json.dumps(track['artists'][0]['name']))
-#print(json.dumps(track['artists']))
-#print(json.dumps(track['artists']['name']))
+  # Get the first 100 (max) songs in the playlist
+  results = spotify.user_playlist_tracks('spotify:user:zack_johnston', 'spotify:playlist:6dosGTCTRJ5xtA3XM6YTZb', limit=100, offset=0)
+
+  # Store results in a tracks array
+  tracks = results['items']
+  #print(json.dumps(results))
+  #new_adds = []
+  records = {}
+  records = Response(body=json.dumps(records))
+  records.headers.update({'Access-Control-Allow-Origin': '*',})
+  return records
 
 
+  # Continue paginating through until all results are returned
+  #while results['next']:
+    #results = spotify.next(results)
+    #tracks.extend(results['items'])
+    #for items in (tracks):
+    #new_adds.append(item['name'])
+
+  #print(json.dumps(new_adds))
+
+  #print(json.dumps(track['artists'][0]['name']))
+  #print(json.dumps(track['artists']))
+  #print(json.dumps(track['artists']['name']))
 
 # Route to retrieve the login page
 def login(req):
@@ -68,6 +75,8 @@ def get_home(req):
     return render_to_response('templates/portal.html',{'user':req.session['user']})
   else: # not logged in
     return HTTPFound(req.route_url("login"))
+  
+
 
 # Route to handle login form submissions coming from the login page
 def post_login(req):
@@ -691,6 +700,12 @@ if __name__ == '__main__':
   config.add_view(get_ready, route_name='get_ready', renderer='json')
   
   ##################################
+  
+  config.add_route('spotify', '/spotify')
+  config.add_view(spotify, route_name='spotify', renderer='json')
+  
+  config.add_route('get_playlists', '/get_playlists')
+  config.add_view(get_playlists, route_name='get_playlists', renderer='json')
 
 
 
