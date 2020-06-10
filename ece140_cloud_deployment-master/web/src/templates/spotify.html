@@ -103,8 +103,8 @@ document.getElementById("Polar").onclick = function() {
     .then((response) =>{
         console.log("Response Received")
         console.log(response)
-        console.log(response["items"][0]["track"]["artists"][0]["name"])
-        document.getElementById("playlistInfo").innerHTML = response["items"][0];
+        console.log(response["items"][0]["added_at"])
+        document.getElementById("playlistInfo").innerHTML = response["items"][0]["album"]["name"];
     })
 
     .catch((error)=>{
