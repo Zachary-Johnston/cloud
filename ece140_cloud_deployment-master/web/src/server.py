@@ -44,18 +44,18 @@ def get_playlists(req):
   # Store songs in a tracks array
   tracks = results['items']
   playlist_length = len(tracks)
-  songs_array = []
-  artists_array = []
-  date_added_array = []
+  #songs_array = []
+  #artists_array = []
+  #date_added_array = []
   
-  for x in range(0, playlist_length):
-    songs_array.append(results['items'][x]['track']['name'])
+  #for x in range(0, playlist_length):
+    #songs_array.append(results['items'][x]['track']['name'])
     
-  for i in range(0, playlist_length):
-    artists_array.append(results['items'][i]['track']['artists'][0]['name'])
+  #for i in range(0, playlist_length):
+    #artists_array.append(results['items'][i]['track']['artists'][0]['name'])
     
-  for j in range(0, playlist_length):
-    date_added_array.append(results['items'][j]['added_at'])
+  #for j in range(0, playlist_length):
+    #date_added_array.append(results['items'][j]['added_at'])
 
   #print(songs)
   #print(artists)
@@ -63,18 +63,9 @@ def get_playlists(req):
   #print(json.dumps(results))
   #new_adds = []
   records = {}
-  songs = {}
-  artists = {}
-  date_added = {}
   records = Response(body=json.dumps(results))
-  songs = Response(body=json.dumps(songs_array))
-  artists = Response(body=json.dumps(artists_array))
-  date_added = Response(body=json.dumps(date_added_array))
   records.headers.update({'Access-Control-Allow-Origin': '*',})
-  songs.headers.update({'Access-Control-Allow-Origin': '*',})
-  artists.headers.update({'Access-Control-Allow-Origin': '*',})
-  date_added.headers.update({'Access-Control-Allow-Origin': '*',})
-  return records, songs, artists, date_added
+  return records
 
 
   # Continue paginating through until all results are returned
