@@ -37,6 +37,7 @@ results = spotify.user_playlist_tracks('spotify:user:zack_johnston', 'spotify:pl
 # Store results in a tracks array
 tracks = results['items']
 print(json.dumps(results))
+print(json.dumps(results[0]))
 #new_adds = []
 
 
