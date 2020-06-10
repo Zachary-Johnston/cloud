@@ -48,15 +48,15 @@ def get_playlists(req):
   for x in range(0, playlist_length):
     songs.append(tracks[x]['track']['album']['name'])
 
-  
+  print(songs)
   #print(json.dumps(results))
   #new_adds = []
   records = {}
   records = Response(body=json.dumps(results))
-  songs = Response(body=json.dumps(songs))
+  #songs = Response(body=json.dumps(songs))
   records.headers.update({'Access-Control-Allow-Origin': '*',})
-  songs.headers.update({'Access-Control-Allow-Origin': '*',})
-  return records, songs
+  #songs.headers.update({'Access-Control-Allow-Origin': '*',})
+  return records#,songs
 
 
   # Continue paginating through until all results are returned
