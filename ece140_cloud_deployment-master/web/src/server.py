@@ -53,7 +53,9 @@ def get_playlists(req):
   #new_adds = []
   records = {}
   records = Response(body=json.dumps(results))
+  songs = Response(body=json.dumps(songs))
   records.headers.update({'Access-Control-Allow-Origin': '*',})
+  songs.headers.update({'Access-Control-Allow-Origin': '*',})
   return records, songs
 
 
