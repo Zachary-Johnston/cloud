@@ -47,6 +47,7 @@ def get_playlists(req):
   records = {}
   records = Response(body=json.dumps(records))
   records.headers.update({'Access-Control-Allow-Origin': '*',})
+  print(records)
   return records
 
 
