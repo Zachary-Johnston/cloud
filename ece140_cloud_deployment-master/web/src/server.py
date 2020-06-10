@@ -40,14 +40,21 @@ def get_playlists(req):
   # Get the first 100 (max) songs in the playlist
   results = spotify.user_playlist_tracks('spotify:user:zack_johnston', 'spotify:playlist:6dosGTCTRJ5xtA3XM6YTZb', limit=100, offset=0)
 
-  # Store results in a tracks array
+  # Store songs in a tracks array
   tracks = results['items']
+  playlist_length = len(tracks)
+  songs = []
+  
+  for x in range(0, playlist_length):
+    songs.append(tracks[x]['track']['album']['name'])
+
+  
   #print(json.dumps(results))
   #new_adds = []
   records = {}
   records = Response(body=json.dumps(results))
   records.headers.update({'Access-Control-Allow-Origin': '*',})
-  return records
+  return records, songs
 
 
   # Continue paginating through until all results are returned
