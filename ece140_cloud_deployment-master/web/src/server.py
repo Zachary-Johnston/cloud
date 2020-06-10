@@ -46,7 +46,7 @@ def get_playlists(req):
   songs = []
   
   for x in range(0, playlist_length):
-    songs.append(tracks[x]['track']['album']['name'])
+    songs.append(results['items'][x]['track']['album']['name'])
 
   print(songs)
   #print(json.dumps(results))
