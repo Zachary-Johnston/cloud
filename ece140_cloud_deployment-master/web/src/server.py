@@ -44,10 +44,6 @@ def get_playlists(req):
   # Store songs in a tracks array
   tracks = results['items']
   playlist_length = len(tracks)
-  
-  SPOTIPY_CLIENT_ID='531bf1de1dc44e71bd4bb4f9c69af7a7'
-  SPOTIPY_CLIENT_SECRET='0d6921a912534d15b5fed7e75b4f46b2'
-  SPOTIPY_REDIRECT_URI='polarcoffee.org/spotify'
 
   
   
@@ -61,9 +57,8 @@ def get_playlists(req):
   token = util.prompt_for_user_token(username, scope)
 
   if token:
-    sp = spotipy.Spotify(auth=token)
-    sp.trace = False
-    results = sp.user_playlist_add_tracks(username, playlist_id, track_ids)
+    spotify.trace = False
+    results = spotify.user_playlist_add_tracks(username, playlist_id, track_ids)
     print(results)
   else:
     print("Can't get token for", username)
