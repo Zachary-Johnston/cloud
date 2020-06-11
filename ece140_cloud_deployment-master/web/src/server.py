@@ -13,6 +13,8 @@ import mysql.connector as mysql
 import requests
 import json
 import os
+import argparse
+import logging
 import time
 import paho.mqtt.client as mqtt
 import sys
