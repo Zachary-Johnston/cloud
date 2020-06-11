@@ -13,8 +13,6 @@ import mysql.connector as mysql
 import requests
 import json
 import os
-import argparse
-import logging
 import time
 import paho.mqtt.client as mqtt
 import sys
@@ -35,6 +33,8 @@ def spotify(req):
   return render_to_response('templates/spotify.html', {}, request =req)
 
 def get_playlists(req):
+
+    
     ## Authentication
   # Register an app with https://developer.spotify.com/dashboard/ and paste your Client ID and Client Secret on the line below
   token = util.oauth2.SpotifyClientCredentials(client_id='531bf1de1dc44e71bd4bb4f9c69af7a7', client_secret='0d6921a912534d15b5fed7e75b4f46b2')
@@ -57,6 +57,15 @@ def get_playlists(req):
   for x in range(0, playlist_length):
     track_ids.append(results['items'][x]['track']['id'])
     
+  token = util.prompt_for_user_token(username, scope)
+
+  if token:
+    sp = spotipy.Spotify(auth=token)
+    sp.trace = False
+    results = sp.user_playlist_add_tracks(username, playlist_id, track_ids)
+    print(results)
+  else:
+    print("Can't get token for", username)
 
 
   #songs_array = []
