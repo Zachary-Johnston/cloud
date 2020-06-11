@@ -49,14 +49,19 @@ def get_playlists(req):
   playlist_length = len(tracks)
 
   
-  sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
-  scope = 'playlist-modify-private'
-  username = 'zack_johnston'
   playlist_id = '7xIQR4CjGNAOEXA00Jjfqc'
   track_ids = []
   for x in range(0, playlist_length):
     track_ids.append(results['items'][x]['track']['id'])
     
+
+  token = util.prompt_for_user_token(
+        username='zack_johnston',
+        scope='playlist-modify-private',
+        client_id='531bf1de1dc44e71bd4bb4f9c69af7a7',
+        client_secret='0d6921a912534d15b5fed7e75b4f46b2',
+        redirect_uri='polarcoffee.org/spotify')
+  spotify = spotipy.Spotify(auth=token)
   spotify.trace = False
   adds = spotify.user_playlist_add_tracks(username, playlist_id, track_ids)
   print(adds)
