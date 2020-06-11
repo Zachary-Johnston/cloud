@@ -60,7 +60,7 @@ def get_playlists(req):
         scope='playlist-modify-private',
         client_id='531bf1de1dc44e71bd4bb4f9c69af7a7',
         client_secret='0d6921a912534d15b5fed7e75b4f46b2',
-        redirect_uri='polarcoffee.org/spotify')
+        redirect_uri='https://polarcoffee.org/spotify')
   spotify = spotipy.Spotify(auth=token)
   spotify.trace = False
   adds = spotify.user_playlist_add_tracks(username, playlist_id, track_ids)
