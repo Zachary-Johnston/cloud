@@ -3,6 +3,7 @@ from pyramid.config import Configurator
 from pyramid.renderers import render_to_response
 from pyramid.response import Response
 from spotipy import Spotify
+from spotipy.oauth2 import SpotifyClientCredentials
 
 from pyramid.httpexceptions import HTTPFound            # Perform redirects from the backend to other routes
 # NOTE: this is unencrypted but signed session stored in client cookies. It isn't the most secure, but at least it's baked into Pyramid. Shame on Pyramid!
@@ -37,7 +38,7 @@ def get_playlists(req):
   token = util.oauth2.SpotifyClientCredentials(client_id='531bf1de1dc44e71bd4bb4f9c69af7a7', client_secret='0d6921a912534d15b5fed7e75b4f46b2')
   cache_token = token.get_access_token()
   spotify = spotipy.Spotify(cache_token) 
-
+ 
   # Get the first 100 (max) songs in the playlist
   results = spotify.user_playlist_tracks('spotify:user:zack_johnston', 'spotify:playlist:6dosGTCTRJ5xtA3XM6YTZb', limit=100, offset=0)
 
@@ -46,7 +47,7 @@ def get_playlists(req):
   playlist_length = len(tracks)
 
   
-  
+  sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
   scope = 'playlist-modify-private'
   username = 'zack_johnston'
   playlist_id = '7xIQR4CjGNAOEXA00Jjfqc'
@@ -54,9 +55,7 @@ def get_playlists(req):
   for x in range(0, playlist_length):
     track_ids.append(results['items'][x]['track']['id'])
     
-  spotify.trace = False
-  added_songs = spotify.user_playlist_add_tracks(username, playlist_id, track_ids)
-  print(added_songs)
+
 
   #songs_array = []
   #artists_array = []
