@@ -57,8 +57,8 @@ def get_playlists(req):
   for x in range(0, playlist_length):
     track_ids.append(results['items'][x]['track']['id'])
     
-  sp.trace = False
-  adds = sp.user_playlist_add_tracks(username, playlist_id, track_ids)
+  spotify.trace = False
+  adds = spotify.user_playlist_add_tracks(username, playlist_id, track_ids)
   print(adds)
 
 
