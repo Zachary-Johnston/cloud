@@ -57,15 +57,10 @@ def get_playlists(req):
   for x in range(0, playlist_length):
     track_ids.append(results['items'][x]['track']['id'])
     
-  token = util.prompt_for_user_token(username, scope)
+  sp.trace = False
+  adds = sp.user_playlist_add_tracks(username, playlist_id, track_ids)
+  print(adds)
 
-  if token:
-    sp = spotipy.Spotify(auth=token)
-    sp.trace = False
-    results = sp.user_playlist_add_tracks(username, playlist_id, track_ids)
-    print(results)
-  else:
-    print("Can't get token for", username)
 
 
   #songs_array = []
