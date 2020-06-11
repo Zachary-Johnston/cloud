@@ -44,7 +44,13 @@ def get_playlists(req):
   # Store songs in a tracks array
   tracks = results['items']
   playlist_length = len(tracks)
-    
+  
+  export SPOTIPY_CLIENT_ID='531bf1de1dc44e71bd4bb4f9c69af7a7'
+  export SPOTIPY_CLIENT_SECRET='0d6921a912534d15b5fed7e75b4f46b2'
+  export SPOTIPY_REDIRECT_URI='polarcoffee.org/spotify'
+
+  
+  
   scope = 'playlist-modify-private'
   username = 'zack_johnston'
   playlist_id = '7xIQR4CjGNAOEXA00Jjfqc'
